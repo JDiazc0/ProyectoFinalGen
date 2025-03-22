@@ -3,27 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-using System;
-using UnityEngine;
-using UnityEngine.Audio;
-
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager Instance;
+    public AudioSource musicSource;
+    public AudioSource sfxSource;
+    public AudioClip musicClip;
+    public AudioClip sfxClip;
 
-
-    public static AudioManager Instance { get; private set; }
-    [SerializeField] AudioMixer master;
-    [SerializeField] AudioSource sfxAudio, musicAudio;
-    public Sound[] musicSounds, sfxSounds;
-
-    
-
-    void Awake()
+    private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -31,49 +24,21 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void PlayMusic()
     {
-        
-        PlayMusic("Menu Theme");
-    }
-
-    public void PlaySFX(string name)
-    {
-        Sound sfx = Array.Find(sfxSounds, x => x.nameSound == name);
-
-        if (sfx == null)
+        if (musicSource != null && musicClip != null)
         {
-            Debug.Log("Sound Not Found");
-        }
-
-        else
-        {
-            sfxAudio.PlayOneShot(sfx.clip);
+            musicSource.clip = musicClip;
+            musicSource.loop = true;
+            musicSource.Play();
         }
     }
 
-    public void PlayMusic(string name)
+    public void PlaySFX(string clipName)
     {
-        Sound music = Array.Find(musicSounds, x => x.nameSound == name);
-
-        if (music == null)
+        if (sfxSource != null && sfxClip != null)
         {
-            Debug.Log("Sound Not Found");
-            Debug.Log(music);
-        }
-
-        else
-        {
-            musicAudio.clip = music.clip;
-            musicAudio.Play();
-            musicAudio.loop = true;
+            sfxSource.PlayOneShot(sfxClip);
         }
     }
-
-    public void RestartMusic()
-{
-    musicAudio.Stop();
-    musicAudio.Play();
-}
-
 }

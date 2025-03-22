@@ -5,38 +5,52 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
-{public bool juegoIniciado = false;
+{
+    public bool juegoIniciado = false;
     public int puntaje;
     public GameObject panelVictoria;
     public GameObject inicialText;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+   
+
     void Start()
     {
-       //AudioManager.Instance.PlayMusic("Game Theme"); 
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayMusic();
+        }
+       
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
             IniciarJuego();
-            inicialText.SetActive(false);
+            if (inicialText != null)
+            {
+                inicialText.SetActive(false);
+            }
         }
-        
     }
 
     public void IniciarJuego()
     {
         juegoIniciado = true;
-        Time.timeScale = 1f;        
-        inicialText.SetActive(true);
+        Time.timeScale = 1f;
+        if (inicialText != null)
+        {
+            inicialText.SetActive(true);
+        }
     }
 
     public void GameOver()
     {
         SceneManager.LoadScene(1);
-        //AudioManager.Instance.PlayMusic("Game Over Theme");
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX("SFX");
+        }
     }
 
     public void MostrarMensajeVictoria()
@@ -49,4 +63,5 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         juegoIniciado = false;
     }
+    
 }

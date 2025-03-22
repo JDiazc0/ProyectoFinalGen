@@ -3,14 +3,16 @@ using TMPro;
 public class Counter : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI contadorTexto; 
-    [SerializeField] private float tiempoLimite = 60f; 
+    private float tiempoLimite = 60f; 
     private float tiempoRestante;
-    private bool contando = true; 
+    public bool contando = false; 
 
     void Start()
     {
+        if(contando){
         tiempoRestante = tiempoLimite; 
         ActualizarTexto();
+        }
     }
 
     void Update()

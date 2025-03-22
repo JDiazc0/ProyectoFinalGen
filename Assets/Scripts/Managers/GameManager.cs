@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     {
         juegoIniciado = true;
         Time.timeScale = 1f;
+        SceneManager.LoadScene(1);
         if (inicialText != null)
         {
             inicialText.SetActive(true);

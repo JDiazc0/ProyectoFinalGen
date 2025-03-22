@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: e2cc1a3377157bf4e8e755cb6663ea85
   - enabled: 1
-    path: Assets/Scenes/Carlos.unity
-    guid: 480d4a0c41e714b449c2020c0c50a019
+    path: Assets/Scenes/MainSceneCamilo.unity
+    guid: 9436a946681a42e46a29085b4062f01c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

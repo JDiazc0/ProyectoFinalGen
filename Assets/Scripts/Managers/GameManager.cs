@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
 
         if (AudioManager.Instance != null)
         {
-            AudioManager.Instance.PlaySFX("SFX");
+            //AudioManager.Instance.PlaySFX("SFX");
         }
     }
 

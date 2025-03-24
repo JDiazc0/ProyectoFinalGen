@@ -2,55 +2,72 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public bool juegoIniciado = false;
-    public int puntaje;
-    public GameObject panelVictoria;
-    public GameObject inicialText;
+    public bool juegoIniciado = false;    
+    public GameObject panelVictoria;    
+    public GameObject panelDerrota; 
+    public TextMeshProUGUI contador;      
    
-
     void Start()
     {
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlayMusic();
         }
-       
+        
+        if (contador != null)
+        {
+            contador.gameObject.SetActive(false); 
+            
+        }else{
+            Debug.Log("Contador nullo");
+        }
+        panelVictoria.SetActive(false);       
+        panelDerrota.SetActive(false);   
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        
+        if (SceneManager.GetActiveScene().name == "MainSceneCamilo")
         {
-            IniciarJuego();
-            if (inicialText != null)
+            if (Input.anyKeyDown)
             {
-                inicialText.SetActive(false);
+                contador.gameObject.SetActive(true);
+                Time.timeScale = 1f;
             }
         }
     }
 
     public void IniciarJuego()
     {
-        juegoIniciado = true;
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(1);
-        if (inicialText != null)
+        
+
+        if (contador != null)
         {
-            inicialText.SetActive(true);
-        }
+           contador.gameObject.SetActive(true); 
+        }  
+        juegoIniciado = true;
+        Time.timeScale = 0f;
+        SceneManager.LoadScene(1); 
     }
 
     public void GameOver()
     {
         SceneManager.LoadScene(1);
-
+        Debug.Log("¡Has perdido!");
         if (AudioManager.Instance != null)
         {
-            //AudioManager.Instance.PlaySFX("SFX");
+            AudioManager.Instance.PlaySFX();
+            
+        }
+
+        if (panelDerrota != null)
+        {
+            panelDerrota.SetActive(true);
         }
     }
 
@@ -64,5 +81,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         juegoIniciado = false;
     }
+
     
 }

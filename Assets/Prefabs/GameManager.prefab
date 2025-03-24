@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contadorTexto: {fileID: 0}
-  tiempoLimite: 60
+  contando: 0
 --- !u!1 &5918280970219089125
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contadorTexto: {fileID: 0}
-  tiempoLimite: 60
+  contando: 1
 --- !u!114 &8833710190196821211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,6 +107,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   juegoIniciado: 1
-  puntaje: 0
   panelVictoria: {fileID: 0}
-  inicialText: {fileID: 0}
+  contador: {fileID: 0}

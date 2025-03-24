@@ -1,6 +1,6 @@
 // MenuManager.cs (en la carpeta Managers)
 using UnityEngine;
-
+using TMPro;
 public class MenuManager : MonoBehaviour
 {
     [Header("Referencias")]
@@ -13,6 +13,7 @@ public class MenuManager : MonoBehaviour
 
     private enum MenuState { Main, Settings, Credits }
     private MenuState currentState = MenuState.Main;
+     
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class MenuManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+         
     }
 
     public void ShowMainMenu()

@@ -6,9 +6,11 @@ public class Counter : MonoBehaviour
     private float tiempoLimite = 60f; 
     private float tiempoRestante;
     public bool contando = false; 
+    private GameManager gameManager;
 
     void Start()
     {
+         gameManager = Object.FindFirstObjectByType<GameManager>();
         if(contando){
         tiempoRestante = tiempoLimite; 
         ActualizarTexto();
@@ -20,7 +22,21 @@ public class Counter : MonoBehaviour
         if (contando && tiempoRestante > 0)
         {
             tiempoRestante -= Time.deltaTime;
-            if (tiempoRestante < 0) tiempoRestante = 0; 
+            if (tiempoRestante < 0) 
+            {
+                tiempoRestante = 0; 
+                ActualizarTexto();
+                
+                // Llamar a GameOver cuando el tiempo llegue a 0
+                if (gameManager != null)
+                {
+                    gameManager.GameOver();
+                }
+                else
+                {
+                    Debug.LogError("GameManager no encontrado en la escena.");
+                }
+            }
             ActualizarTexto();
         }
     }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro; 
+using UnityEngine.SceneManagement;
 public class Counter : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI contadorTexto; 
@@ -19,7 +20,7 @@ public class Counter : MonoBehaviour
 
     void Update()
     {
-        if (contando && tiempoRestante > 0)
+        if (contando && tiempoRestante > 0 && SceneManager.GetActiveScene().name == "MainSceneCamilo")
         {
             tiempoRestante -= Time.deltaTime;
             if (tiempoRestante < 0) 

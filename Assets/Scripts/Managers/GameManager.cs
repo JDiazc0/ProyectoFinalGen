@@ -6,32 +6,34 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public bool juegoIniciado = false;    
-    public GameObject panelVictoria;    
-    public GameObject panelDerrota; 
-    public TextMeshProUGUI contador;      
-   
+    public bool juegoIniciado = false;
+    public GameObject panelVictoria;
+    public GameObject panelDerrota;
+    public TextMeshProUGUI contador;
+
     void Start()
     {
         if (AudioManager.Instance != null)
         {
-            AudioManager.Instance.PlayMusic();
+            //AudioManager.Instance.PlayMusic();
         }
-        
+
         if (contador != null)
         {
-            contador.gameObject.SetActive(false); 
-            
-        }else{
+            contador.gameObject.SetActive(false);
+
+        }
+        else
+        {
             Debug.Log("Contador nullo");
         }
-        panelVictoria.SetActive(false);       
-        panelDerrota.SetActive(false);   
+        panelVictoria.SetActive(false);
+        panelDerrota.SetActive(false);
     }
 
     void Update()
     {
-        
+
         if (SceneManager.GetActiveScene().name == "MainSceneCamilo")
         {
             if (Input.anyKeyDown)
@@ -44,15 +46,15 @@ public class GameManager : MonoBehaviour
 
     public void IniciarJuego()
     {
-        
+
 
         if (contador != null)
         {
-           contador.gameObject.SetActive(true); 
-        }  
+            contador.gameObject.SetActive(true);
+        }
         juegoIniciado = true;
         Time.timeScale = 0f;
-        SceneManager.LoadScene(1); 
+        SceneManager.LoadScene(1);
     }
 
     public void GameOver()
@@ -61,8 +63,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("¡Has perdido!");
         if (AudioManager.Instance != null)
         {
-            AudioManager.Instance.PlaySFX();
-            
+            //AudioManager.Instance.PlaySFX();
+
         }
 
         if (panelDerrota != null)
@@ -82,5 +84,5 @@ public class GameManager : MonoBehaviour
         juegoIniciado = false;
     }
 
-    
+
 }

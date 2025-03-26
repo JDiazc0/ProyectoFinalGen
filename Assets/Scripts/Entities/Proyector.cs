@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.Video;
 
+using UnityEngine;
+using UnityEngine.Video;
+
 public class Proyector : MonoBehaviour
 {
-   
     public VideoPlayer videoPlayer;
     public AudioSource audioSource; 
     public GameObject messageUI; // Mensaje de "Presiona E para activar"
@@ -13,17 +15,21 @@ public class Proyector : MonoBehaviour
     {
         messageUI.SetActive(false); // Ocultar mensaje al inicio
         videoPlayer.Stop();
+
+        // Configurar el VideoPlayer para usar su propio audio
+        videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
+        videoPlayer.EnableAudioTrack(0, true);
+        videoPlayer.SetTargetAudioSource(0, audioSource);
     }
 
     void Update()
     {
-        if (isNearProjector && Input.GetKeyDown(KeyCode.E))
+        if (isNearProjector)
         {
             if (!videoPlayer.isPlaying)
             {
                 videoPlayer.Play();
-                audioSource.Play(); // 🔊 Reproducir el sonido del video
-                messageUI.SetActive(false);
+                messageUI.SetActive(true);
             }
         }
     }

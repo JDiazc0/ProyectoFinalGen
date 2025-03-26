@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: e2cc1a3377157bf4e8e755cb6663ea85
   - enabled: 1
-    path: Assets/Scenes/MainSceneCamilo.unity
+    path: Assets/Scenes/MainSceneA.unity
     guid: 9436a946681a42e46a29085b4062f01c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: e6f1f4845b4ac03449bdcb25f3f8ad0f, type: 2}

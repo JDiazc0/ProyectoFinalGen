@@ -8,7 +8,7 @@ public class DoorInteraction : MonoBehaviour
     public AudioClip openSound;  // Sonido de apertura
     public AudioClip closeSound; // Sonido de cierre
     public Transform player;     // Referencia al jugador
-    public float detectionRange = 2f; // Distancia para activar la puerta
+    public float detectionRange = 1.7f; // Distancia para activar la puerta
 
     private bool isOpen = false;
     private Quaternion _closedRotation;

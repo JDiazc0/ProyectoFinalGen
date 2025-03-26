@@ -1,14 +1,14 @@
 using System.Collections;
 using UnityEngine;
 
-public class DoorInteraction : MonoBehaviour
+public class DoorInteractionLeft : MonoBehaviour
 {
     public float openAngle = 90f;
     public float openSpeed = 2f;
     public AudioClip openSound;  // Sonido de apertura
     public AudioClip closeSound; // Sonido de cierre
     public Transform player;     // Referencia al jugador
-    public float detectionRange = 2f; // Distancia para activar la puerta
+    public float detectionRange = 3f; // Distancia para activar la puerta
 
     private bool isOpen = false;
     private Quaternion _closedRotation;

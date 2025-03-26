@@ -1,14 +1,14 @@
 using System.Collections;
 using UnityEngine;
 
-public class DoorInteraction : MonoBehaviour
+public class DoorInteractionRight : MonoBehaviour
 {
     public float openAngle = 90f;
     public float openSpeed = 2f;
     public AudioClip openSound;  // Sonido de apertura
     public AudioClip closeSound; // Sonido de cierre
     public Transform player;     // Referencia al jugador
-    public float detectionRange = 2f; // Distancia para activar la puerta
+    public float detectionRange = 3f; // Distancia para activar la puerta
 
     private bool isOpen = false;
     private Quaternion _closedRotation;
@@ -19,7 +19,7 @@ public class DoorInteraction : MonoBehaviour
     private void Start()
     {
         _closedRotation = transform.rotation;
-        _openRotation = Quaternion.Euler(transform.eulerAngles - new Vector3(0, openAngle, 0));
+        _openRotation = Quaternion.Euler(transform.eulerAngles + new Vector3(0, openAngle, 0));
 
         _audioSource = GetComponent<AudioSource>();
         if (_audioSource == null)

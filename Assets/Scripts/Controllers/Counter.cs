@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class Counter : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI contadorTexto; 
-    private float tiempoLimite = 60f; 
+    private float tiempoLimite = 120f; 
     private float tiempoRestante;
     public bool contando = false; 
     private GameManager gameManager;
@@ -20,7 +20,7 @@ public class Counter : MonoBehaviour
 
     void Update()
     {
-        if (contando && tiempoRestante > 0 && SceneManager.GetActiveScene().name == "MainSceneCamilo")
+        if (contando && tiempoRestante > 0 && SceneManager.GetActiveScene().name == "MainSceneA")
         {
             tiempoRestante -= Time.deltaTime;
             if (tiempoRestante < 0) 

@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
-        if (SceneManager.GetActiveScene().name == "MainSceneCamilo")
+        if (SceneManager.GetActiveScene().name == "MainSceneCamiloDoors")
         {
             if (Input.anyKeyDown)
             {

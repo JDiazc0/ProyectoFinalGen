@@ -7,13 +7,12 @@ using UnityEngine.Video;
 public class Proyector : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
-    public AudioSource audioSource; 
-    public GameObject messageUI; // Mensaje de "Presiona E para activar"
+    public AudioSource audioSource;     
     private bool isNearProjector = false;
 
     void Start()
     {
-        messageUI.SetActive(false); // Ocultar mensaje al inicio
+        
         videoPlayer.Stop();
 
         // Configurar el VideoPlayer para usar su propio audio
@@ -29,7 +28,7 @@ public class Proyector : MonoBehaviour
             if (!videoPlayer.isPlaying)
             {
                 videoPlayer.Play();
-                messageUI.SetActive(true);
+                
             }
         }
     }
@@ -39,7 +38,7 @@ public class Proyector : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isNearProjector = true;
-            messageUI.SetActive(true);
+            
         }
     }
 
@@ -48,7 +47,7 @@ public class Proyector : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isNearProjector = false;
-            messageUI.SetActive(false);
+            
         }
     }
 }

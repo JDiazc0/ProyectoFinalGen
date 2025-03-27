@@ -1,61 +1,57 @@
 using UnityEngine;
-using TMPro; 
-using UnityEngine.SceneManagement;
+using TMPro;
+
 public class Counter : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI contadorTexto; 
-    private float tiempoLimite = 120f; 
-    private float tiempoRestante;
-    public bool contando = false; 
-    private GameManager gameManager;
+    [SerializeField] private TextMeshProUGUI timerText;
+    private float timeLimit = 500f;
+    private float timeRemaining;
+    private bool isRunning = false;
 
     void Start()
     {
-         gameManager = Object.FindFirstObjectByType<GameManager>();
-        if(contando){
-        tiempoRestante = tiempoLimite; 
-        ActualizarTexto();
-        }
+        RestartTimer();
     }
 
     void Update()
     {
-        if (contando && tiempoRestante > 0 && SceneManager.GetActiveScene().name == "MainSceneA")
+        if (isRunning && timeRemaining > 0)
         {
-            tiempoRestante -= Time.deltaTime;
-            if (tiempoRestante < 0) 
+            timeRemaining -= Time.deltaTime;
+            if (timeRemaining <= 0)
             {
-                tiempoRestante = 0; 
-                ActualizarTexto();
-                
-                // Llamar a GameOver cuando el tiempo llegue a 0
-                if (gameManager != null)
+                timeRemaining = 0;
+                isRunning = false;
+                UpdateTimerText();
+
+                if (GameManager.Instance != null)
                 {
-                    gameManager.GameOver();
+                    GameManager.Instance.RestartGame();
                 }
                 else
                 {
-                    Debug.LogError("GameManager no encontrado en la escena.");
+                    Debug.LogError("GameManager instance not found!");
                 }
             }
-            ActualizarTexto();
+            UpdateTimerText();
         }
     }
 
-    private void ActualizarTexto()
+    private void UpdateTimerText()
     {
-        if (contadorTexto != null)
+        if (timerText != null)
         {
-            contadorTexto.text = "Tiempo: " + tiempoRestante.ToString("F2") ; 
+            timerText.text = $"Time: {timeRemaining:F2}";
         }
     }
-  
-    public void PausarContador() => contando = false;
-    public void ReanudarContador() => contando = true;
-    public void ReiniciarContador()
+
+    public void PauseTimer() => isRunning = false;
+    public void ResumeTimer() => isRunning = true;
+
+    public void RestartTimer()
     {
-        tiempoRestante = tiempoLimite;
-        contando = true;
-        ActualizarTexto();
+        timeRemaining = timeLimit;
+        isRunning = true;
+        UpdateTimerText();
     }
 }

@@ -7,8 +7,8 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public bool juegoIniciado = false;
-    public GameObject panelVictoria;
-    public GameObject panelDerrota;
+    //public GameObject panelVictoria;
+    //public GameObject panelDerrota;
     public TextMeshProUGUI contador;
 
     void Start()
@@ -27,8 +27,8 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Contador nullo");
         }
-        panelVictoria.SetActive(false);
-        panelDerrota.SetActive(false);
+        //panelVictoria.SetActive(false);
+        //panelDerrota.SetActive(false);
     }
 
     void Update()
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
             contador.gameObject.SetActive(true);
         }
         juegoIniciado = true;
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
         SceneManager.LoadScene(1);
     }
 
@@ -67,18 +67,18 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if (panelDerrota != null)
-        {
-            panelDerrota.SetActive(true);
-        }
+        //if (panelDerrota != null)
+        //{
+        //    panelDerrota.SetActive(true);
+        //}
     }
 
     public void MostrarMensajeVictoria()
     {
-        if (panelVictoria != null)
-        {
-            panelVictoria.SetActive(true);
-        }
+        //if (panelVictoria != null)
+        //{
+       //     panelVictoria.SetActive(true);
+       // }
         Debug.Log("¡Has ganado!");
         Time.timeScale = 0f;
         juegoIniciado = false;

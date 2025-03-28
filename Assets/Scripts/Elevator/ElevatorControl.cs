@@ -33,7 +33,7 @@ public class ElevatorControl : MonoBehaviour
         float distance = Vector3.Distance(transform.position, player.position);
         isInRange = distance < detectionRange;
 
-        if (isInRange && Input.GetMouseButtonDown(0) && !isMoving)
+        if (isInRange && Input.GetKeyDown(KeyCode.E) && !isMoving)
         {
             if (buttonSound != null)
             {

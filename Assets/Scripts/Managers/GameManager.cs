@@ -6,83 +6,72 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public bool juegoIniciado = false;
-    //public GameObject panelVictoria;
-    //public GameObject panelDerrota;
-    public TextMeshProUGUI contador;
+    public static GameManager Instance { get; private set; }
+    private bool isPaused = false;
 
-    void Start()
+    void Awake()
     {
-        if (AudioManager.Instance != null)
+        if (Instance == null)
         {
-            //AudioManager.Instance.PlayMusic();
-        }
-
-        if (contador != null)
-        {
-            contador.gameObject.SetActive(false);
-
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Debug.Log("Contador nullo");
-        }
-        //panelVictoria.SetActive(false);
-        //panelDerrota.SetActive(false);
-    }
-
-    void Update()
-    {
-
-        if (SceneManager.GetActiveScene().name == "MainSceneA")
-        {
-            if (Input.anyKeyDown)
-            {
-                contador.gameObject.SetActive(true);
-                Time.timeScale = 1f;
-            }
+            Destroy(gameObject);
         }
     }
 
-    public void IniciarJuego()
+    public void StartGame()
     {
-
-
-        if (contador != null)
-        {
-            contador.gameObject.SetActive(true);
-        }
-        juegoIniciado = true;
-        //Time.timeScale = 0f;
+        Debug.Log("Juego Iniciado");
         SceneManager.LoadScene(1);
+    }
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void GameOver()
     {
-        SceneManager.LoadScene(1);
         Debug.Log("¡Has perdido!");
-        if (AudioManager.Instance != null)
-        {
-            //AudioManager.Instance.PlaySFX();
+    }
 
+    public void GameWon()
+    {
+        Debug.Log("¡Has ganado!");
+    }
+
+
+    public bool TogglePause()
+    {
+        isPaused = !isPaused;
+
+        Debug.Log("toggle");
+        if (isPaused)
+        {
+            Debug.Log("Pausa");
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Debug.Log("Despausa");
+            Time.timeScale = 1f;
         }
 
-        //if (panelDerrota != null)
-        //{
-        //    panelDerrota.SetActive(true);
-        //}
+        return isPaused;
     }
 
-    public void MostrarMensajeVictoria()
+    public void ResumeGame()
     {
-        //if (panelVictoria != null)
-        //{
-       //     panelVictoria.SetActive(true);
-       // }
-        Debug.Log("¡Has ganado!");
-        Time.timeScale = 0f;
-        juegoIniciado = false;
+        TogglePause();
     }
 
+    public void ReturnToMainMenu()
+    {
+        TogglePause();
+        Debug.Log("Regresando al menú principal...");
+        SceneManager.LoadScene(0);
+    }
 
 }

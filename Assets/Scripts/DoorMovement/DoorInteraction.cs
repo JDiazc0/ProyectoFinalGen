@@ -33,7 +33,7 @@ public class DoorInteraction : MonoBehaviour
         // Verificar la distancia entre el jugador y la puerta
         if (player != null && Vector3.Distance(transform.position, player.position) <= detectionRange)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 if (_currentCoroutine != null) StopCoroutine(_currentCoroutine);
                 _currentCoroutine = StartCoroutine(ToggleDoor());

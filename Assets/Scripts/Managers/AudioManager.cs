@@ -1,238 +1,105 @@
-using System.Collections; 
-using System.Collections.Generic; 
-using UnityEngine; 
-using UnityEngine.UI;
- 
-
-
- 
+using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.Rendering;
 
 public class AudioManager : MonoBehaviour
 {
-
     public static AudioManager Instance { get; private set; }
-    public AudioSource musicSource;
- 
 
-    public AudioSource sfxSource;
- 
+    [SerializeField] private AudioSource _sfxSource;
+    [SerializeField] private AudioSource _musicSource;
+    [SerializeField] private AudioMixer _masterMixer;
+    [SerializeField] private AudioClip _defaultMenuMusic;
+    private bool isMuted = false;
 
-    public AudioClip musicClip;
- 
-
-    public AudioClip sfxClip;
- 
-
-    public Slider musicSlider;
- 
-
-    public Slider sfxSlider;
- 
-
-
- 
+    private const string MusicVolumeKey = "Music";
+    private const string SfxVolumeKey = "SFX";
+    private const string MasterVolumeKey = "Master";
 
     private void Awake()
- 
-
     {
- 
-
         if (Instance == null)
- 
-
         {
- 
-
             Instance = this;
- 
-
             DontDestroyOnLoad(gameObject);
- 
-
         }
- 
-
         else
- 
-
         {
- 
-
             Destroy(gameObject);
- 
-
         }
- 
-
     }
- 
 
-
- 
-
-    private void Start()
- 
-
+    void Start()
     {
- 
+        _sfxSource = transform.GetChild(0).GetComponent<AudioSource>();
+        _musicSource = transform.GetChild(1).GetComponent<AudioSource>();
 
-        // Buscar los Sliders en la escena
- 
-
-        musicSlider = GameObject.Find("MusicSlider")?.GetComponent<Slider>();
- 
-
-        sfxSlider = GameObject.Find("sfxSlider")?.GetComponent<Slider>();
- 
-
-
- 
-
-        if (musicSlider != null)
- 
-
-        {
- 
-
-            musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.55f);
- 
-
-            musicSlider.onValueChanged.AddListener(SetMusicVolume);
- 
-
-        }
- 
-
-        
- 
-
-        if (sfxSlider != null)
- 
-
-        {
- 
-
-            sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.55f);
- 
-
-            sfxSlider.onValueChanged.AddListener(SetSFXVolume);
- 
-
-        }
- 
-
+        LoadSoundPreferences();
+        PlayMusic(_defaultMenuMusic);
     }
- 
 
 
- 
-
-    public void PlayMusic()
- 
-
+    // Música
+    public void PlayMusic(AudioClip clip, bool loop = true)
     {
- 
+        if (_musicSource == null || clip == null) return;
 
-        if (musicSource != null && musicClip != null)
- 
-
-        {
- 
-
-            musicSource.clip = musicClip;
- 
-
-            musicSource.loop = true;
- 
-
-            musicSource.Play();
- 
-
-        }
- 
-
+        _musicSource.Stop();
+        _musicSource.clip = clip;
+        _musicSource.loop = loop;
+        _musicSource.Play();
     }
- 
 
-
- 
-
-    public void PlaySFX()
- 
-
+    // SFX
+    public void PlaySFX(AudioClip clip, float volume = 1f)
     {
- 
-
-        if (sfxSource != null && sfxClip != null)
- 
-
+        if (_sfxSource != null && clip != null)
         {
- 
-
-            sfxSource.PlayOneShot(sfxClip);
- 
-
+            _sfxSource.PlayOneShot(clip, volume);
         }
- 
-
     }
- 
 
+    public void StopSFX() => _sfxSource?.Stop();
 
- 
-
-    public void SetMusicVolume(float volume)
- 
-
+    // Volumen
+    public void SetMasterVolume(float volumeDB)
     {
- 
-
-        if (musicSource != null)
- 
-
-        {
- 
-
-            musicSource.volume = volume;
- 
-
-            PlayerPrefs.SetFloat("MusicVolume", volume);
- 
-
-        }
- 
-
+        _masterMixer.SetFloat(MasterVolumeKey, volumeDB);
+        PlayerPrefs.SetFloat(MasterVolumeKey, volumeDB);
     }
- 
 
-
- 
-
-    public void SetSFXVolume(float volume)
- 
-
+    public void SetMusicVolume(float volumeDB)
     {
- 
-
-        if (sfxSource != null)
- 
-
-        {
- 
-
-            sfxSource.volume = volume;
- 
-
-            PlayerPrefs.SetFloat("SFXVolume", volume);
- 
-
-        }
- 
-
+        _masterMixer.SetFloat(MusicVolumeKey, volumeDB);
+        PlayerPrefs.SetFloat(MusicVolumeKey, volumeDB);
     }
- 
 
+    public void SetSFXVolume(float volumeDB)
+    {
+        _masterMixer.SetFloat(SfxVolumeKey, volumeDB);
+        PlayerPrefs.SetFloat(SfxVolumeKey, volumeDB);
+    }
+
+    public void ToggleMute()
+    {
+        isMuted = !isMuted;
+        _masterMixer.SetFloat(MasterVolumeKey, isMuted ? -40f : 0f);
+        PlayerPrefs.SetFloat(MasterVolumeKey, isMuted ? -40f : 0f);
+    }
+
+    private void LoadSoundPreferences()
+    {
+        if (PlayerPrefs.HasKey(MusicVolumeKey))
+        {
+            SetMusicVolume(PlayerPrefs.GetFloat(MusicVolumeKey));
+        }
+        if (PlayerPrefs.HasKey(SfxVolumeKey))
+        {
+            SetSFXVolume(PlayerPrefs.GetFloat(SfxVolumeKey));
+        }
+        if (PlayerPrefs.HasKey(MasterVolumeKey))
+        {
+            _masterMixer.SetFloat(MasterVolumeKey, PlayerPrefs.GetFloat(MasterVolumeKey));
+        }
+    }
 }
-
-

@@ -6,81 +6,72 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public bool juegoIniciado = false;    
-    public GameObject panelVictoria;    
-    public GameObject panelDerrota; 
-    public TextMeshProUGUI contador;      
-   
-    void Start()
-    {
-        if (AudioManager.Instance != null)
-        {
-            AudioManager.Instance.PlayMusic();
-        }
-        
-        if (contador != null)
-        {
-            contador.gameObject.SetActive(false); 
-            
-        }else{
-            Debug.Log("Contador nullo");
-        }
-        panelVictoria.SetActive(false);       
-        panelDerrota.SetActive(false);   
-    }
+    public static GameManager Instance { get; private set; }
+    private bool isPaused = false;
 
-    void Update()
+    void Awake()
     {
-        
-        if (SceneManager.GetActiveScene().name == "MainSceneCamilo")
+        if (Instance == null)
         {
-            if (Input.anyKeyDown)
-            {
-                contador.gameObject.SetActive(true);
-                Time.timeScale = 1f;
-            }
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
-    public void IniciarJuego()
+    public void StartGame()
     {
-        
-
-        if (contador != null)
-        {
-           contador.gameObject.SetActive(true); 
-        }  
-        juegoIniciado = true;
-        Time.timeScale = 0f;
-        SceneManager.LoadScene(1); 
+        Debug.Log("Juego Iniciado");
+        SceneManager.LoadScene(1);
+    }
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void GameOver()
     {
-        SceneManager.LoadScene(1);
         Debug.Log("¡Has perdido!");
-        if (AudioManager.Instance != null)
-        {
-            AudioManager.Instance.PlaySFX();
-            
-        }
-
-        if (panelDerrota != null)
-        {
-            panelDerrota.SetActive(true);
-        }
     }
 
-    public void MostrarMensajeVictoria()
+    public void GameWon()
     {
-        if (panelVictoria != null)
-        {
-            panelVictoria.SetActive(true);
-        }
         Debug.Log("¡Has ganado!");
-        Time.timeScale = 0f;
-        juegoIniciado = false;
     }
 
-    
+
+    public bool TogglePause()
+    {
+        isPaused = !isPaused;
+
+        Debug.Log("toggle");
+        if (isPaused)
+        {
+            Debug.Log("Pausa");
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Debug.Log("Despausa");
+            Time.timeScale = 1f;
+        }
+
+        return isPaused;
+    }
+
+    public void ResumeGame()
+    {
+        TogglePause();
+    }
+
+    public void ReturnToMainMenu()
+    {
+        TogglePause();
+        Debug.Log("Regresando al menú principal...");
+        SceneManager.LoadScene(0);
+    }
+
 }

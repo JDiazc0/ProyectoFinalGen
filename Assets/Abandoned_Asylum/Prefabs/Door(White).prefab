@@ -312,7 +312,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7794821434701963224}
-  - component: {fileID: 6617476964491389506}
   m_Layer: 0
   m_Name: DoorJoint
   m_TagString: Untagged
@@ -336,24 +335,6 @@ Transform:
   - {fileID: 4165753898805346968}
   m_Father: {fileID: 9074191319996660558}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6617476964491389506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3509604296717454270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 963885c873bb05a419e1e79378402caa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  openAngle: 90
-  openSpeed: 2
-  openSound: {fileID: 8300000, guid: 6d014450c96949d46876f5f1209250da, type: 3}
-  closeSound: {fileID: 8300000, guid: 55cd1a23d96b3a148af1c50923ef263e, type: 3}
-  player: {fileID: 0}
-  detectionRange: 2
 --- !u!1 &3698533635427094916
 GameObject:
   m_ObjectHideFlags: 0

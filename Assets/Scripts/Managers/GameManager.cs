@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    private bool isPaused = false;
+    public bool IsPaused { get; private set; } = false;
 
     void Awake()
     {
@@ -43,23 +40,11 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public bool TogglePause()
+    public void TogglePause()
     {
-        isPaused = !isPaused;
-
-        Debug.Log("toggle");
-        if (isPaused)
-        {
-            Debug.Log("Pausa");
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            Debug.Log("Despausa");
-            Time.timeScale = 1f;
-        }
-
-        return isPaused;
+        IsPaused = !IsPaused;
+        Time.timeScale = IsPaused ? 0f : 1f;
+        Debug.Log(IsPaused ? "Pausa" : "Despausa");
     }
 
     public void ResumeGame()
@@ -69,7 +54,10 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        TogglePause();
+        if (IsPaused)
+        {
+            TogglePause();
+        }
         Debug.Log("Regresando al menú principal...");
         SceneManager.LoadScene(0);
     }

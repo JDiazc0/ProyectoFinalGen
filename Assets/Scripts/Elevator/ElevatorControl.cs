@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ElevatorControl : MonoBehaviour
 {
-    public Transform player;
+    private Transform player;        // Referencia dinámica al jugador
     public float detectionRange = 2f;
     public GameObject elevator;
     public float elevatorSpeed = 2f;
@@ -21,6 +21,14 @@ public class ElevatorControl : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+
+        if (player == null)
+        {
+            Debug.LogError("No se encontró un GameObject con la etiqueta 'Player'.");
+            return;
+        }
+
         cubeRenderer = GetComponent<Renderer>();
         cubeRenderer.material.color = originalColor;
 
@@ -30,6 +38,8 @@ public class ElevatorControl : MonoBehaviour
 
     void Update()
     {
+        if (player == null) return; // Evita errores si no hay jugador
+
         float distance = Vector3.Distance(transform.position, player.position);
         isInRange = distance < detectionRange;
 
@@ -60,8 +70,8 @@ public class ElevatorControl : MonoBehaviour
 
         Vector3 startPos = elevator.transform.position;
         Vector3 targetPos = isAtTop
-            ? (startPos + new Vector3(0, elevatorHeight, 0))  // Baja primero (-4.12)
-            : (startPos - new Vector3(0, elevatorHeight, 0)); // Luego sube (+4.12)
+            ? (startPos + new Vector3(0, elevatorHeight, 0))  // Baja primero
+            : (startPos - new Vector3(0, elevatorHeight, 0)); // Luego sube
 
         float startTime = Time.time;
         float duration = Mathf.Abs(elevatorHeight) / elevatorSpeed;
@@ -106,4 +116,3 @@ public class ElevatorControl : MonoBehaviour
         audioSource.Stop();
     }
 }
-

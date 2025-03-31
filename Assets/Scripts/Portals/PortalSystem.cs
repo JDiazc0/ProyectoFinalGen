@@ -10,6 +10,7 @@ public class PortalSystem : MonoBehaviour
 
     private AudioSource audioSource;
     private bool isTeleporting = false;
+    private float fadeOutDuration = 1f; // Duración del fade-out
 
     void Start()
     {
@@ -17,7 +18,6 @@ public class PortalSystem : MonoBehaviour
 
         if (player == null)
         {
-            Debug.LogError("No se encontró un GameObject con la etiqueta 'Player'.");
             return;
         }
 
@@ -43,7 +43,9 @@ public class PortalSystem : MonoBehaviour
 
         if (portalSound != null)
         {
-            audioSource.PlayOneShot(portalSound);
+            audioSource.clip = portalSound;
+            audioSource.volume = 1f;
+            audioSource.Play();
         }
 
         yield return new WaitForSeconds(0.1f);
@@ -63,6 +65,21 @@ public class PortalSystem : MonoBehaviour
             controller.enabled = true;
         }
 
+        StartCoroutine(FadeOutSound()); // Inicia el fade-out del sonido
         isTeleporting = false;
+    }
+
+    IEnumerator FadeOutSound()
+    {
+        float startVolume = audioSource.volume;
+
+        for (float t = 0; t < fadeOutDuration; t += Time.deltaTime)
+        {
+            audioSource.volume = Mathf.Lerp(startVolume, 0f, t / fadeOutDuration);
+            yield return null;
+        }
+
+        audioSource.volume = 0f;
+        audioSource.Stop();
     }
 }

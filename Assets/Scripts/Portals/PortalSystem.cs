@@ -18,7 +18,6 @@ public class PortalSystem : MonoBehaviour
 
         if (player == null)
         {
-            Debug.LogError("No se encontró un GameObject con la etiqueta 'Player'.");
             return;
         }
 

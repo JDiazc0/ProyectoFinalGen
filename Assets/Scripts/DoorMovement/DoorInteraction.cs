@@ -7,9 +7,9 @@ public class DoorInteraction : MonoBehaviour
     public float openSpeed = 2f;
     public AudioClip openSound;  // Sonido de apertura
     public AudioClip closeSound; // Sonido de cierre
-    public Transform player;     // Referencia al jugador
     public float detectionRange = 1.7f; // Distancia para activar la puerta
 
+    private Transform player; // Referencia dinámica al jugador
     private bool isOpen = false;
     private Quaternion _closedRotation;
     private Quaternion _openRotation;
@@ -18,24 +18,31 @@ public class DoorInteraction : MonoBehaviour
 
     private void Start()
     {
+        // Buscar al jugador por la etiqueta "Player"
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        if (player == null)
+        {
+            Debug.LogError("No se encontró un GameObject con la etiqueta 'Player'. Asegúrate de que el jugador tenga la etiqueta correctamente asignada.");
+            return;
+        }
+
         _closedRotation = transform.rotation;
         _openRotation = Quaternion.Euler(transform.eulerAngles - new Vector3(0, openAngle, 0));
 
+        // Verificar y agregar AudioSource si es necesario
         _audioSource = GetComponent<AudioSource>();
         if (_audioSource == null)
         {
             _audioSource = gameObject.AddComponent<AudioSource>();
+            Debug.LogWarning("Se agregó un AudioSource automáticamente porque no existía.");
         }
     }
 
     private void Update()
     {
-        // Si el objeto tiene el tag "Office", no hacer nada
-        if (gameObject.CompareTag("Office"))
-            return;
+        if (player == null) return; // Evita errores si no hay jugador
 
-        // Verificar la distancia entre el jugador y la puerta
-        if (player != null && Vector3.Distance(transform.position, player.position) <= detectionRange)
+        if (Vector3.Distance(transform.position, player.position) <= detectionRange)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -49,7 +56,6 @@ public class DoorInteraction : MonoBehaviour
     {
         Quaternion targetRotation = isOpen ? _closedRotation : _openRotation;
 
-        // Reproducir sonido segï¿½n el estado de la puerta
         if (isOpen && closeSound != null)
             _audioSource.PlayOneShot(closeSound);
         else if (!isOpen && openSound != null)

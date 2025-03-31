@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Recolectable
+  - Office
   layers:
   - Default
   - TransparentFX

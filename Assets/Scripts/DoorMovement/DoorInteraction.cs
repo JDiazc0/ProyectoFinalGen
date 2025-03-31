@@ -30,6 +30,10 @@ public class DoorInteraction : MonoBehaviour
 
     private void Update()
     {
+        // Si el objeto tiene el tag "Office", no hacer nada
+        if (gameObject.CompareTag("Office"))
+            return;
+
         // Verificar la distancia entre el jugador y la puerta
         if (player != null && Vector3.Distance(transform.position, player.position) <= detectionRange)
         {
@@ -45,7 +49,7 @@ public class DoorInteraction : MonoBehaviour
     {
         Quaternion targetRotation = isOpen ? _closedRotation : _openRotation;
 
-        // Reproducir sonido según el estado de la puerta
+        // Reproducir sonido segï¿½n el estado de la puerta
         if (isOpen && closeSound != null)
             _audioSource.PlayOneShot(closeSound);
         else if (!isOpen && openSound != null)

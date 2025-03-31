@@ -14,8 +14,6 @@ public class Proyector : MonoBehaviour
     {
         
         videoPlayer.Stop();
-
-        // Configurar el VideoPlayer para usar su propio audio
         videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
         videoPlayer.EnableAudioTrack(0, true);
         videoPlayer.SetTargetAudioSource(0, audioSource);

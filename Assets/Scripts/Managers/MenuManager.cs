@@ -100,7 +100,6 @@ public class MenuManager : MonoBehaviour
     {
         menuAnimation.ShowMainPanel();
         currentState = MenuState.Main;
-
     }
 
     public void ShowSettings()
@@ -113,9 +112,12 @@ public class MenuManager : MonoBehaviour
     {
         menuAnimation.ShowCreditsPanel();
         currentState = MenuState.Credits;
-
     }
 
+    public void CloseGame()
+    {
+        Application.Quit();
+    }
     /* TODO: Implementar posibles opciones de:
         * - Guardar configuraciones
         * - Cargar configuraciones

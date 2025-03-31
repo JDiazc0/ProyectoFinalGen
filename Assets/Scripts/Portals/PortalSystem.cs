@@ -8,6 +8,7 @@ public class PortalSystem : MonoBehaviour
     public float detectionRange = 1f; // Distancia para activar el portal
     public AudioClip portalSound;    // Sonido del portal (opcional)
 
+
     private AudioSource audioSource;
     private bool isTeleporting = false;
 

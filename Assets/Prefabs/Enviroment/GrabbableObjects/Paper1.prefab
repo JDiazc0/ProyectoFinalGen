@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3169841753397171609}
   - component: {fileID: 3434587852031615973}
   - component: {fileID: 134957176350242601}
-  - component: {fileID: 4877462585775309241}
   m_Layer: 6
   m_Name: Paper
   m_TagString: Untagged
@@ -87,19 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4877462585775309241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1288281926221689213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 807362143919f8c4da7976bebe73be09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemSO: {fileID: 11400000, guid: 60d54bfcf090b7741a19b0c2c7f289c5, type: 2}
 --- !u!1 &5269691641260813701
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acff049d8f1b1f24580ba601e6c25006, type: 3}
-  m_Name: Cube
+  m_Name: CubeItemSO
   m_EditorClassIdentifier: 
-  itemName: Kettle
-  icon: {fileID: 21300000, guid: 1a342d5bee8091643be8c6a9201b6823, type: 3}
+  itemName: Cube
+  icon: {fileID: 21300000, guid: 4186632a7963f7c47a64dd4ae4b703a5, type: 3}
   prefab: {fileID: 5592232452386419018, guid: 9d8292df89a61794fbe9cdbbfb7b38e7, type: 3}
   description: 

@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class GrabController : MonoBehaviour
 {
     [Header("Ray Settings")]
@@ -17,10 +16,8 @@ public class GrabController : MonoBehaviour
     public GameObject hotBar;
     public GameObject actionInvetoryPanel;
 
-
     [Header("Physics Settings")]
     public float throwForce = 5f;
-
 
     [Header("Inventory Settings")]
     [SerializeField] private int inventorySize = 5;
@@ -46,6 +43,7 @@ public class GrabController : MonoBehaviour
         CheckInteractableObject();
         HandleSlotSelection();
 
+        // Si no estamos sosteniendo nada, intentar agarrar o sacar del inventario
         if (!isHolding && Input.GetMouseButtonDown(0))
         {
             if (inventoryItems[currentSlot] != null)
@@ -58,11 +56,13 @@ public class GrabController : MonoBehaviour
             }
         }
 
+        // Soltar objeto con clic derecho
         if (isHolding && Input.GetMouseButtonDown(1))
         {
             Release();
         }
 
+        // Guardar objeto en el inventario con tecla E
         if (isHolding && Input.GetKeyDown(KeyCode.E))
         {
             StoreToInventory();
@@ -74,13 +74,14 @@ public class GrabController : MonoBehaviour
         int previousSlot = currentSlot;
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) currentSlot = 0;
-        if (Input.GetKeyDown(KeyCode.Alpha2)) currentSlot = 1;
-        if (Input.GetKeyDown(KeyCode.Alpha3)) currentSlot = 2;
-        if (Input.GetKeyDown(KeyCode.Alpha4)) currentSlot = 3;
-        if (Input.GetKeyDown(KeyCode.Alpha5)) currentSlot = 4;
+        else if (Input.GetKeyDown(KeyCode.Alpha2)) currentSlot = 1;
+        else if (Input.GetKeyDown(KeyCode.Alpha3)) currentSlot = 2;
+        else if (Input.GetKeyDown(KeyCode.Alpha4)) currentSlot = 3;
+        else if (Input.GetKeyDown(KeyCode.Alpha5)) currentSlot = 4;
 
         if (previousSlot != currentSlot)
         {
+            Debug.Log("Slot cambiado: " + currentSlot);
             UpdateInventoryUI();
         }
     }
@@ -114,21 +115,93 @@ public class GrabController : MonoBehaviour
         }
     }
 
+    void TryGrab()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(
+            Camera.main.transform.position,
+            Camera.main.transform.forward,
+            out hit,
+            grabDistance,
+            grabbableLayer))
+        {
+            grabbedObject = hit.collider.gameObject;
+            Debug.Log("Objeto detectado: " + grabbedObject.name);
+            GrabObject();
+        }
+    }
+
+    void GrabObject()
+    {
+        if (grabbedObject == null)
+            return;
+
+        Debug.Log("Agarrando objeto: " + grabbedObject.name);
+
+        Rigidbody rb = grabbedObject.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.isKinematic = true;
+            rb.useGravity = false;
+        }
+
+        Collider objCollider = grabbedObject.GetComponent<Collider>();
+        if (objCollider != null)
+        {
+            Physics.IgnoreCollision(playerCollider, objCollider, true);
+        }
+
+        grabbedObject.transform.SetParent(holdPosition);
+        grabbedObject.transform.localPosition = Vector3.zero;
+        isHolding = true;
+
+        CheckInteractableObject();
+    }
+
+    void Release()
+    {
+        if (grabbedObject == null)
+            return;
+
+        Debug.Log("Soltando objeto: " + grabbedObject.name);
+
+        Rigidbody rb = grabbedObject.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.isKinematic = false;
+            rb.useGravity = true;
+            rb.AddForce(Camera.main.transform.forward * throwForce, ForceMode.Impulse);
+        }
+
+        Collider objCollider = grabbedObject.GetComponent<Collider>();
+        if (objCollider != null)
+        {
+            Physics.IgnoreCollision(playerCollider, objCollider, false);
+        }
+
+        grabbedObject.transform.SetParent(null);
+        grabbedObject = null;
+        isHolding = false;
+
+        CheckInteractableObject();
+    }
+
     void GrabFromInventory(int slot)
     {
         if (isHolding)
         {
-            Debug.Log("Ya tienes un objeto en la mano");
+            Debug.LogWarning("Ya tienes un objeto en la mano");
             return;
         }
 
         ItemSO itemSO = inventoryItems[slot];
         if (itemSO == null || itemSO.prefab == null)
         {
-            Debug.Log("Slot vacío o prefab faltante");
+            Debug.LogWarning("Slot vacío o prefab faltante en slot " + slot);
             return;
         }
 
+        Debug.Log("Instanciando objeto desde inventario - Slot " + slot + " con item: " + itemSO.itemName);
         GameObject invObject = Instantiate(
             itemSO.prefab,
             holdPosition.position,
@@ -160,25 +233,25 @@ public class GrabController : MonoBehaviour
     {
         if (!isHolding)
         {
-            Debug.Log("No hay objeto para guardar");
+            Debug.LogWarning("No hay objeto para guardar");
             return;
         }
 
         Item itemComponent = grabbedObject.GetComponent<Item>();
         if (itemComponent == null || itemComponent.itemSO == null)
         {
-            Debug.Log("El objeto no es guardable o no tiene itemSo");
+            Debug.LogWarning("El objeto no es guardable o no tiene ItemSO");
             return;
         }
 
         int emptySlot = System.Array.FindIndex(inventoryItems, item => item == null);
         if (emptySlot == -1)
         {
-            Debug.Log("Inventario lleno");
+            Debug.LogWarning("Inventario lleno");
             return;
         }
 
-        // Crear y guardar los datos del item
+        Debug.Log("Guardando: " + itemComponent.itemSO.itemName + " en slot " + emptySlot);
         inventoryItems[emptySlot] = itemComponent.itemSO;
 
         Destroy(grabbedObject);
@@ -186,68 +259,6 @@ public class GrabController : MonoBehaviour
         isHolding = false;
 
         UpdateInventoryUI();
-    }
-
-    void TryGrab()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(
-            Camera.main.transform.position,
-            Camera.main.transform.forward,
-            out hit,
-            grabDistance,
-            grabbableLayer))
-        {
-            grabbedObject = hit.collider.gameObject;
-            GrabObject();
-        }
-    }
-
-    void GrabObject()
-    {
-        Rigidbody rb = grabbedObject.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.isKinematic = true;
-            rb.useGravity = false;
-        }
-
-        Collider objCollider = grabbedObject.GetComponent<Collider>();
-        if (objCollider != null)
-        {
-            Physics.IgnoreCollision(playerCollider, objCollider, true);
-        }
-
-        grabbedObject.transform.SetParent(holdPosition);
-        grabbedObject.transform.localPosition = Vector3.zero;
-        isHolding = true;
-
-        CheckInteractableObject();
-    }
-
-    void Release()
-    {
-        if (grabbedObject == null) return;
-
-        Rigidbody rb = grabbedObject.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.isKinematic = false;
-            rb.useGravity = true;
-            rb.AddForce(Camera.main.transform.forward * throwForce, ForceMode.Impulse);
-        }
-
-        Collider objCollider = grabbedObject.GetComponent<Collider>();
-        if (objCollider != null)
-        {
-            Physics.IgnoreCollision(playerCollider, objCollider, false);
-        }
-
-        grabbedObject.transform.SetParent(null);
-        grabbedObject = null;
-        isHolding = false;
-
-        CheckInteractableObject();
     }
 
     private void UpdateInventoryUI()
@@ -289,3 +300,4 @@ public class GrabController : MonoBehaviour
         }
     }
 }
+

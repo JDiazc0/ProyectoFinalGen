@@ -1625,7 +1625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceThreshold: 0.15
-  isGrounded: 1
+  isGrounded: 0
 --- !u!1001 &5759662113135507063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1712,6 +1712,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3151362464602625682, guid: 16715c4a0e7fbf949abceabb63e06e0b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6318558093433225450, guid: 16715c4a0e7fbf949abceabb63e06e0b, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6931601886899203851, guid: 16715c4a0e7fbf949abceabb63e06e0b, type: 3}

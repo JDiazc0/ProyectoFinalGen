@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acff049d8f1b1f24580ba601e6c25006, type: 3}
   m_Name: Kettle
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Kettle
   icon: {fileID: 21300000, guid: 1a342d5bee8091643be8c6a9201b6823, type: 3}
-  prefab: {fileID: 1225390104349394, guid: 0b59763cc8ba23b47b22f8eeac0bebee, type: 3}
+  prefab: {fileID: 315517329572521756, guid: 5443dc187551c3d4f9828b1a8f0d0473, type: 3}
   description: 

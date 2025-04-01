@@ -56,7 +56,7 @@ public class PortalSystem : MonoBehaviour
             controller.enabled = false;
         }
 
-        player.position = new Vector3(targetSpawn.position.x, player.position.y, targetSpawn.position.z);
+        player.position = new Vector3(targetSpawn.position.x, targetSpawn.position.y, targetSpawn.position.z);
 
         yield return new WaitForSeconds(0.1f);
 

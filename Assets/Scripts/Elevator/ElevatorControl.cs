@@ -7,7 +7,7 @@ public class ElevatorControl : MonoBehaviour
     public float detectionRange = 2f;
     public GameObject elevator;
     public float elevatorSpeed = 2f;
-    public float elevatorHeight = -7.66f; // Ahora comienza bajando
+    public float elevatorHeight = -7.66f;
     public AudioClip buttonSound;
     public AudioClip elevatorSound;
     public float fadeOutDuration = 1f;

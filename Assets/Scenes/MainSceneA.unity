@@ -1828,7 +1828,7 @@ Transform:
   m_GameObject: {fileID: 144334035}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.5, y: 2.19, z: -8.61}
+  m_LocalPosition: {x: -19.24, y: 2.632, z: -10.165}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4896,7 +4896,7 @@ Transform:
   m_GameObject: {fileID: 409341322}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 26.55, y: 2.171, z: -19.88}
+  m_LocalPosition: {x: 26.55, y: 2.873, z: -19.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7996,7 +7996,7 @@ GameObject:
   - component: {fileID: 704864301}
   m_Layer: 0
   m_Name: ToxicGasZone3
-  m_TagString: Untagged
+  m_TagString: ToxicGas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9774,7 +9774,7 @@ GameObject:
   - component: {fileID: 885112705}
   m_Layer: 0
   m_Name: ToxicGasZone2
-  m_TagString: Untagged
+  m_TagString: ToxicGas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11095,7 +11095,7 @@ Transform:
   m_GameObject: {fileID: 1020130415}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.31, y: 2.09, z: -35.95}
+  m_LocalPosition: {x: -21.643, y: 2.62, z: -34.972}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16472,7 +16472,7 @@ GameObject:
   - component: {fileID: 1561660350}
   m_Layer: 0
   m_Name: ToxicGasZone1
-  m_TagString: Untagged
+  m_TagString: ToxicGas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

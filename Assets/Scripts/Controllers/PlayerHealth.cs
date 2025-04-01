@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.maxValue = maxHealth;
         healthBar.value = currentHealth;
-        healthBar.gameObject.SetActive(false);
+        healthBar.gameObject.SetActive(true);
     }
 
     void Update()

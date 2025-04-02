@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Recolectable
   - Office
+  - Clapper
   layers:
   - Default
   - TransparentFX

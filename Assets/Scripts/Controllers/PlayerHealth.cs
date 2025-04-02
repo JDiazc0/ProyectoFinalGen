@@ -20,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
 
     IEnumerator DamageOverTime()
     {
-        if (SceneManager.GetActiveScene().name == "MainSceneCamilo")
+        if (SceneManager.GetActiveScene().name == "MainSceneA")
         {
             healthBar.gameObject.SetActive(true); 
             

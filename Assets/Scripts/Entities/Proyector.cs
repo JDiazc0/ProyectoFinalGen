@@ -1,9 +1,6 @@
 using UnityEngine;
 using UnityEngine.Video;
 
-using UnityEngine;
-using UnityEngine.Video;
-
 public class Proyector : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
@@ -33,7 +30,7 @@ public class Proyector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Clapper"))
         {
             isNearProjector = true;
             
@@ -42,7 +39,7 @@ public class Proyector : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Clapper"))
         {
             isNearProjector = false;
             

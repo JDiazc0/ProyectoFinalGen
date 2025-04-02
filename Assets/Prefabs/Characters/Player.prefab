@@ -745,7 +745,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -905,7 +905,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4541520394522155621}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f977f53412d81140ab13b3fca57cca2, type: 3}
   m_Name: 
@@ -1716,11 +1716,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6318558093433225450, guid: 16715c4a0e7fbf949abceabb63e06e0b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6931601886899203851, guid: 16715c4a0e7fbf949abceabb63e06e0b, type: 3}
       propertyPath: m_Name
       value: GrabbablePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6931601886899203851, guid: 16715c4a0e7fbf949abceabb63e06e0b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

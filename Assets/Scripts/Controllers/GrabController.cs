@@ -33,7 +33,6 @@ public class GrabController : MonoBehaviour
     void Start()
     {
         playerCollider = GameObject.FindWithTag("Player").GetComponent<Collider>();
-        GrabbableItemUI.SetActive(false);
         inventoryItems = new ItemSO[inventorySize];
         UpdateInventoryUI(); // Inicializa la UI
     }
@@ -95,8 +94,18 @@ public class GrabController : MonoBehaviour
 
     void CheckInteractableObject()
     {
-        // Se podría usar CanGrabObjectInFront() para la detección de la UI, pero aquí
-        // mantenemos la lógica original.
+        Debug.Log("Comprobando objeto interactuable...");
+
+        // Primero verificar si estamos sosteniendo algo (tiene prioridad)
+        if (isHolding)
+        {
+            Debug.Log("Objeto agarrado - mostrando actionPanel");
+            mousePanel.SetActive(false);
+            actionPanel.SetActive(true);
+            return;
+        }
+
+        // Si no estamos sosteniendo nada, ver si podemos agarrar algo
         RaycastHit hit;
         bool canGrab = Physics.Raycast(
             Camera.main.transform.position,
@@ -106,21 +115,25 @@ public class GrabController : MonoBehaviour
             grabbableLayer
         );
 
-        if (canGrab && !isHolding)
+        if (canGrab && (inventoryItems[currentSlot] != null || inventoryItems[currentSlot] == null))
         {
-            GrabbableItemUI.SetActive(true);
+            Debug.Log("Objeto agarrable detectado - mostrando mousePanel");
             mousePanel.SetActive(true);
             actionPanel.SetActive(false);
-        }
-        else if (isHolding)
+            actionInvetoryPanel.SetActive(false);
+        }else if (!canGrab && inventoryItems[currentSlot] != null)
         {
-            GrabbableItemUI.SetActive(true);
+            Debug.Log("Objeto agarrable detectado - mostrando mousePanel");
             mousePanel.SetActive(false);
-            actionPanel.SetActive(true);
+            actionPanel.SetActive(false);
+            actionInvetoryPanel.SetActive(true);
         }
         else
         {
-            GrabbableItemUI.SetActive(false);
+            Debug.Log("Nada interactuable - ocultando paneles");
+            mousePanel.SetActive(false);
+            actionPanel.SetActive(false);
+            actionInvetoryPanel.SetActive(false);
         }
     }
 
@@ -300,11 +313,6 @@ public class GrabController : MonoBehaviour
                     }
                 }
             }
-        }
-
-        if (actionInvetoryPanel != null)
-        {
-            actionInvetoryPanel.SetActive(inventoryItems[currentSlot] != null);
         }
     }
 }

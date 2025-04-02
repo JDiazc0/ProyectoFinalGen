@@ -102,6 +102,7 @@ public class GrabController : MonoBehaviour
             Debug.Log("Objeto agarrado - mostrando actionPanel");
             mousePanel.SetActive(false);
             actionPanel.SetActive(true);
+            actionInvetoryPanel.SetActive(false);
             return;
         }
 

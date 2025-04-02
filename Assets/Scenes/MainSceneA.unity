@@ -26405,7 +26405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2041321209297157673, guid: 4dcf73c68706e2b4a9cf1026ab57f7a5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.051
+      value: 0.056
       objectReference: {fileID: 0}
     - target: {fileID: 2041321209297157673, guid: 4dcf73c68706e2b4a9cf1026ab57f7a5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -26442,18 +26442,6 @@ PrefabInstance:
     - target: {fileID: 3027193228833117334, guid: 4dcf73c68706e2b4a9cf1026ab57f7a5, type: 3}
       propertyPath: m_Name
       value: Paper
-      objectReference: {fileID: 0}
-    - target: {fileID: 6484764027666696776, guid: 4dcf73c68706e2b4a9cf1026ab57f7a5, type: 3}
-      propertyPath: m_Size.y
-      value: 0.026140824
-      objectReference: {fileID: 0}
-    - target: {fileID: 6484764027666696776, guid: 4dcf73c68706e2b4a9cf1026ab57f7a5, type: 3}
-      propertyPath: m_Center.y
-      value: -0.0009951848
-      objectReference: {fileID: 0}
-    - target: {fileID: 6484764027666696776, guid: 4dcf73c68706e2b4a9cf1026ab57f7a5, type: 3}
-      propertyPath: m_Center.z
-      value: 3.217405e-18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -446,6 +446,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5339958196478144407, guid: 11a41c6f97f584140be4968f5c8ee67f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 13754093}
+    - targetCorrespondingSourceObject: {fileID: 5339958196478144407, guid: 11a41c6f97f584140be4968f5c8ee67f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 13754094}
   m_SourcePrefab: {fileID: 100100000, guid: 11a41c6f97f584140be4968f5c8ee67f, type: 3}
 --- !u!1 &13754092 stripped
 GameObject:
@@ -466,9 +469,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openAngle: 90
   openSpeed: 2
-  openSound: {fileID: 0}
-  closeSound: {fileID: 0}
+  openSound: {fileID: 8300000, guid: 6d014450c96949d46876f5f1209250da, type: 3}
+  closeSound: {fileID: 8300000, guid: 55cd1a23d96b3a148af1c50923ef263e, type: 3}
   detectionRange: 1.7
+  officeLayerName: Office
+--- !u!114 &13754094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13754092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 330b68b3ddb72a24fa7fa3d6692557b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayerName: Terapia
+  interactionRange: 2
 --- !u!1 &23030647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1636,6 +1654,144 @@ Transform:
   - {fileID: 233407867}
   m_Father: {fileID: 87466986}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &136165342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 136165343}
+  - component: {fileID: 136165345}
+  - component: {fileID: 136165344}
+  m_Layer: 5
+  m_Name: TopSecret
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &136165343
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136165342}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 207815226}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 180.69946, y: -155.56357}
+  m_SizeDelta: {x: 561.3989, y: 361.1271}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &136165344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136165342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "En este lugar, el aroma es fuerte,\ndonde el l\xEDquido oscuro es reconfortante.\nLa
+    gente aqu\xED viene a charlar o estudiar,\ny muchos se sientan con tazas a esperar.\n\n\xBFQu\xE9
+    lugar es?"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: -119.29785, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &136165345
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136165342}
+  m_CullTransparentMesh: 1
 --- !u!1 &137504809
 GameObject:
   m_ObjectHideFlags: 0
@@ -2427,6 +2583,7 @@ RectTransform:
   - {fileID: 830527890}
   - {fileID: 1722636242}
   - {fileID: 1917323296}
+  - {fileID: 136165343}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -15143,7 +15300,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -22.71
+      value: -23.4
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: m_LocalPosition.y
@@ -20065,6 +20222,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1188038921}
     - target: {fileID: 3088910035712388820, guid: 11a41c6f97f584140be4968f5c8ee67f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3088910035712388820, guid: 11a41c6f97f584140be4968f5c8ee67f, type: 3}
       propertyPath: openSound
       value: 
       objectReference: {fileID: 8300000, guid: 6d014450c96949d46876f5f1209250da, type: 3}
@@ -20131,8 +20292,55 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 150872682956738371, guid: 11a41c6f97f584140be4968f5c8ee67f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1863284354}
+    - targetCorrespondingSourceObject: {fileID: 5339958196478144407, guid: 11a41c6f97f584140be4968f5c8ee67f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1863284353}
   m_SourcePrefab: {fileID: 100100000, guid: 11a41c6f97f584140be4968f5c8ee67f, type: 3}
+--- !u!1 &1863284351 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5339958196478144407, guid: 11a41c6f97f584140be4968f5c8ee67f, type: 3}
+  m_PrefabInstance: {fileID: 1863284350}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1863284352 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 150872682956738371, guid: 11a41c6f97f584140be4968f5c8ee67f, type: 3}
+  m_PrefabInstance: {fileID: 1863284350}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1863284353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863284351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af794fd5b5445524f96253d6a094f727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openAngle: 90
+  openSpeed: 2
+  openSound: {fileID: 8300000, guid: 6d014450c96949d46876f5f1209250da, type: 3}
+  closeSound: {fileID: 8300000, guid: 55cd1a23d96b3a148af1c50923ef263e, type: 3}
+  detectionRange: 1.7
+  officeLayerName: Terapia
+--- !u!114 &1863284354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863284352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8de3a0756bd7bf42a701a59bfee931c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allowedLayer: Terapia
 --- !u!1 &1864946668
 GameObject:
   m_ObjectHideFlags: 0
@@ -130538,6 +130746,8 @@ GameObject:
   - component: {fileID: 8581569245439398453}
   - component: {fileID: 8592132119853618959}
   - component: {fileID: 8613535001380036527}
+  - component: {fileID: 8613535001380036529}
+  - component: {fileID: 8613535001380036528}
   m_Layer: 0
   m_Name: TableOffice (1)
   m_TagString: Untagged
@@ -152356,11 +152566,50 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: ac4aa96559b78204493e1b3753e8a045, type: 3}
+--- !u!114 &8613535001380036528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8605104279915571597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1346a2f974d86c44688a7146ddb00543, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expedienteTexto: {fileID: 136165344}
+  expediente: "Daniel Carte\nEdad: 23 a\xF1os\nDiagn\xF3stico: Trastorno de Ansiedad
+    Generalizada (TAG), Episodio Depresivo Moderado.\nMotivo de Consulta: Ansiedad
+    intensa, insomnio y dificultad para concentrarse.\nTratamiento: Psicoterapia
+    en la Sala de Terapia, Escitalopram 10 mg/d\xEDa, t\xE9cnicas de relajaci\xF3n
+    y seguimiento en dos semanas."
+--- !u!65 &8613535001380036529
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8605104279915571597}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.2853642, y: 0.797209, z: 1.1616857}
+  m_Center: {x: 0.006661415, y: 0.39277852, z: -0.1426838}
 --- !u!64 &8613539709878018219
 MeshCollider:
   m_ObjectHideFlags: 0

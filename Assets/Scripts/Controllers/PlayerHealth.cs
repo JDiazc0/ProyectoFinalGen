@@ -8,54 +8,52 @@ public class PlayerHealth : MonoBehaviour
     public float maxHealth = 120f;
     private float currentHealth;
     public Slider healthBar;
+    private bool isInToxicGas = false;
+    public float damagePerSecond = 5f;
 
     void Start()
     {
         currentHealth = maxHealth;
         healthBar.maxValue = maxHealth;
         healthBar.value = currentHealth;
-        healthBar.gameObject.SetActive(false);        
-        StartCoroutine(DamageOverTime());
+        healthBar.gameObject.SetActive(true);
     }
 
-    IEnumerator DamageOverTime()
+    void Update()
     {
-        if (SceneManager.GetActiveScene().name == "MainSceneA")
+        if (isInToxicGas)
         {
-            healthBar.gameObject.SetActive(true); 
-            
-            while (currentHealth > 0)
-            {
-                currentHealth -= 2f; 
-                healthBar.value = currentHealth;
-                yield return new WaitForSeconds(1f);
-            }
+            TakeDamage(damagePerSecond * Time.deltaTime);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("ToxicGas"))
+        {
+            isInToxicGas = true;
+            healthBar.gameObject.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("ToxicGas"))
+        {
+            isInToxicGas = false;
+        }
+    }
+
+    public void TakeDamage(float amount)
+    {
+        currentHealth -= amount;
+        healthBar.value = currentHealth;
+
+        if (currentHealth <= 0)
+        {
             Debug.Log("Game Over");
-            GameManager gm = FindFirstObjectByType<GameManager>(); 
+            GameManager gm = FindFirstObjectByType<GameManager>();
             gm.GameOver();
-            
         }
-    }
-
-    
-            
-                
-            
-        
-
-    public void TakeDamage(float amount) // Asegúrate de que este método es público
-    {
-        maxHealth -= amount;
-        if (maxHealth <= 0)
-        {
-            Die();
-        }
-    }
-
-    private void Die()
-    {
-        Debug.Log("El jugador ha muerto");
-        GameManager gm = FindFirstObjectByType<GameManager>(); 
-        gm.GameOver();;
     }
 }

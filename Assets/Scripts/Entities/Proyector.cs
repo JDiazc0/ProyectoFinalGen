@@ -1,14 +1,16 @@
 using UnityEngine;
 using UnityEngine.Video;
+using TMPro;
 
 public class Proyector : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
     public AudioSource audioSource;
+    public TextMeshProUGUI mensajeText; // Referencia al TextMeshPro
     private bool isNearProjector = false;
     private bool hasPlayed = false;
     public string grabbableLayerName = "Grabbable";
-    public DoubleDoorInteraction scriptAControlar; 
+    public DoubleDoorInteraction scriptAControlar;
 
     void Start()
     {
@@ -16,10 +18,11 @@ public class Proyector : MonoBehaviour
         videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
         videoPlayer.EnableAudioTrack(0, true);
         videoPlayer.SetTargetAudioSource(0, audioSource);
+        mensajeText.gameObject.SetActive(false); // Oculta el mensaje al inicio
 
         if (scriptAControlar != null)
         {
-            scriptAControlar.enabled = false; 
+            scriptAControlar.enabled = false;
         }
     }
 
@@ -32,6 +35,7 @@ public class Proyector : MonoBehaviour
                 videoPlayer.Play();
                 hasPlayed = true;
                 ActivarScript();
+                MostrarMensaje("En este lugar, el aroma es fuerte,donde el líquido oscuro es reconfortante.La gente aquí viene a charlar o estudiar,y muchos se sientan con tazas a esperar.¿Qué lugar es?");
             }
         }
     }
@@ -41,7 +45,6 @@ public class Proyector : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer(grabbableLayerName))
         {
             isNearProjector = true;
-
         }
     }
 
@@ -50,8 +53,9 @@ public class Proyector : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer(grabbableLayerName))
         {
             isNearProjector = false;
-            videoPlayer.Stop(); // Opcional: Detener el video cuando el objeto se aleje
+            videoPlayer.Stop(); // Detener el video cuando el objeto se aleje
             hasPlayed = false; // Permite volver a reproducir el video si el objeto se acerca de nuevo
+            OcultarMensaje();
         }
     }
 
@@ -59,11 +63,29 @@ public class Proyector : MonoBehaviour
     {
         if (scriptAControlar != null)
         {
-            scriptAControlar.enabled = true; // Activa el script
+            scriptAControlar.enabled = true;
             Debug.Log("¡MiScript ha sido activado!");
         }
     }
+
+    private void MostrarMensaje(string mensaje)
+    {
+        if (mensajeText != null)
+        {
+            mensajeText.text = mensaje;
+            mensajeText.gameObject.SetActive(true);
+        }
+    }
+
+    private void OcultarMensaje()
+    {
+        if (mensajeText != null)
+        {
+            mensajeText.gameObject.SetActive(false);
+        }
+    }
 }
+
 
 
 

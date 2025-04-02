@@ -6,7 +6,8 @@ public class Proyector : MonoBehaviour
     public VideoPlayer videoPlayer;
     public AudioSource audioSource;
     private bool isNearProjector = false;
-    private bool hasPlayed = false; // Bandera para saber si el video ya se reprodujo
+    private bool hasPlayed = false;
+    public string grabbableLayerName = "Grabbable"; 
 
     void Start()
     {
@@ -18,20 +19,19 @@ public class Proyector : MonoBehaviour
 
     void Update()
     {
-        // Sólo reproduce si el jugador está cerca y el video no se ha reproducido ya
         if (isNearProjector && !hasPlayed)
         {
             if (!videoPlayer.isPlaying)
             {
                 videoPlayer.Play();
-                hasPlayed = true; // Se marca como reproducido
+                hasPlayed = true;
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Clapper"))
+        if (other.gameObject.layer == LayerMask.NameToLayer(grabbableLayerName))
         {
             isNearProjector = true;
         }
@@ -39,10 +39,13 @@ public class Proyector : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Clapper"))
+        if (other.gameObject.layer == LayerMask.NameToLayer(grabbableLayerName))
         {
             isNearProjector = false;
+            videoPlayer.Stop(); // Opcional: Detener el video cuando el objeto se aleje
+            hasPlayed = false; // Permite volver a reproducir el video si el objeto se acerca de nuevo
         }
     }
 }
+
 

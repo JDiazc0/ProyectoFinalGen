@@ -68,9 +68,17 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 23c8a7785d1856c469ee51b66ef1998d, type: 2}
+    - target: {fileID: -4560884380629454036, guid: a96735e9fecae49489d51fdce71da64b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a96735e9fecae49489d51fdce71da64b, type: 3}
       propertyPath: m_Name
       value: clapper
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a96735e9fecae49489d51fdce71da64b, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a96735e9fecae49489d51fdce71da64b, type: 3}
       propertyPath: m_TagString

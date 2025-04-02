@@ -33,7 +33,6 @@ public class GrabController : MonoBehaviour
     void Start()
     {
         playerCollider = GameObject.FindWithTag("Player").GetComponent<Collider>();
-        GrabbableItemUI.SetActive(false);
         inventoryItems = new ItemSO[inventorySize];
         UpdateInventoryUI(); // Inicializa la UI
     }
@@ -43,18 +42,26 @@ public class GrabController : MonoBehaviour
         CheckInteractableObject();
         HandleSlotSelection();
 
-        // Si no estamos sosteniendo nada, intentar agarrar o sacar del inventario
+        // --- MODIFICACIÓN: Priorizamos agarrar del mundo si hay un objeto frente al jugador ---
         if (!isHolding && Input.GetMouseButtonDown(0))
         {
-            if (inventoryItems[currentSlot] != null)
+            // Verificamos si hay un objeto en frente que podamos agarrar
+            if (CanGrabObjectInFront(out RaycastHit hitInfo))
             {
-                GrabFromInventory(currentSlot);
+                grabbedObject = hitInfo.collider.gameObject;
+                Debug.Log("Objeto detectado: " + grabbedObject.name);
+                GrabObject();
             }
             else
             {
-                TryGrab();
+                // Si NO hay objeto para agarrar, revisamos si el slot actual tiene algo
+                if (inventoryItems[currentSlot] != null)
+                {
+                    GrabFromInventory(currentSlot);
+                }
             }
         }
+        // -------------------------------------------------------------------------------------
 
         // Soltar objeto con clic derecho
         if (isHolding && Input.GetMouseButtonDown(1))
@@ -72,7 +79,6 @@ public class GrabController : MonoBehaviour
     private void HandleSlotSelection()
     {
         int previousSlot = currentSlot;
-
         if (Input.GetKeyDown(KeyCode.Alpha1)) currentSlot = 0;
         else if (Input.GetKeyDown(KeyCode.Alpha2)) currentSlot = 1;
         else if (Input.GetKeyDown(KeyCode.Alpha3)) currentSlot = 2;
@@ -81,13 +87,25 @@ public class GrabController : MonoBehaviour
 
         if (previousSlot != currentSlot)
         {
-            Debug.Log("Slot cambiado: " + currentSlot);
+            Debug.Log("Slot cambiado a: " + currentSlot);
             UpdateInventoryUI();
         }
     }
 
     void CheckInteractableObject()
     {
+        Debug.Log("Comprobando objeto interactuable...");
+
+        // Primero verificar si estamos sosteniendo algo (tiene prioridad)
+        if (isHolding)
+        {
+            Debug.Log("Objeto agarrado - mostrando actionPanel");
+            mousePanel.SetActive(false);
+            actionPanel.SetActive(true);
+            return;
+        }
+
+        // Si no estamos sosteniendo nada, ver si podemos agarrar algo
         RaycastHit hit;
         bool canGrab = Physics.Raycast(
             Camera.main.transform.position,
@@ -97,38 +115,41 @@ public class GrabController : MonoBehaviour
             grabbableLayer
         );
 
-        if (canGrab && !isHolding)
+        if (canGrab && (inventoryItems[currentSlot] != null || inventoryItems[currentSlot] == null))
         {
-            GrabbableItemUI.SetActive(true);
+            Debug.Log("Objeto agarrable detectado - mostrando mousePanel");
             mousePanel.SetActive(true);
             actionPanel.SetActive(false);
-        }
-        else if (isHolding)
+            actionInvetoryPanel.SetActive(false);
+        }else if (!canGrab && inventoryItems[currentSlot] != null)
         {
-            GrabbableItemUI.SetActive(true);
+            Debug.Log("Objeto agarrable detectado - mostrando mousePanel");
             mousePanel.SetActive(false);
-            actionPanel.SetActive(true);
+            actionPanel.SetActive(false);
+            actionInvetoryPanel.SetActive(true);
         }
         else
         {
-            GrabbableItemUI.SetActive(false);
+            Debug.Log("Nada interactuable - ocultando paneles");
+            mousePanel.SetActive(false);
+            actionPanel.SetActive(false);
+            actionInvetoryPanel.SetActive(false);
         }
     }
 
-    void TryGrab()
+    /// <summary>
+    /// Comprueba si hay un objeto "grabbable" en frente del jugador,
+    /// devolviendo true y el RaycastHit correspondiente si se detecta.
+    /// </summary>
+    private bool CanGrabObjectInFront(out RaycastHit hitInfo)
     {
-        RaycastHit hit;
-        if (Physics.Raycast(
+        return Physics.Raycast(
             Camera.main.transform.position,
             Camera.main.transform.forward,
-            out hit,
+            out hitInfo,
             grabDistance,
-            grabbableLayer))
-        {
-            grabbedObject = hit.collider.gameObject;
-            Debug.Log("Objeto detectado: " + grabbedObject.name);
-            GrabObject();
-        }
+            grabbableLayer
+        );
     }
 
     void GrabObject()
@@ -205,7 +226,7 @@ public class GrabController : MonoBehaviour
         GameObject invObject = Instantiate(
             itemSO.prefab,
             holdPosition.position,
-            holdPosition.rotation
+            itemSO.prefab.transform.rotation
         );
         invObject.transform.SetParent(holdPosition);
 
@@ -292,11 +313,6 @@ public class GrabController : MonoBehaviour
                     }
                 }
             }
-        }
-
-        if (actionInvetoryPanel != null)
-        {
-            actionInvetoryPanel.SetActive(inventoryItems[currentSlot] != null);
         }
     }
 }

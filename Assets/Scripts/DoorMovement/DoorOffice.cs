@@ -7,7 +7,8 @@ public class DoorOffice : MonoBehaviour
     public float openSpeed = 2f;
     public AudioClip openSound;  
     public AudioClip closeSound; 
-    public float detectionRange = 1.7f;  
+    public float detectionRange = 1.7f;
+    public string officeLayerName = "Office"; // Nombre del layer asignable
 
     private Transform player;
     private bool isOpen = false;
@@ -63,9 +64,10 @@ public class DoorOffice : MonoBehaviour
     private bool IsTouchingOfficeObject()
     {
         Collider[] colliders = Physics.OverlapSphere(player.position, 0.5f);
+        int officeLayer = LayerMask.NameToLayer(officeLayerName);
         foreach (Collider col in colliders)
         {
-            if (col.gameObject.layer == LayerMask.NameToLayer("Office"))
+            if (col.gameObject.layer == officeLayer)
             {
                 return true;
             }

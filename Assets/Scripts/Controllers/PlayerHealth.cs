@@ -5,11 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public float maxHealth = 120f;
+    public float maxHealth = 180f;
     private float currentHealth;
     public Slider healthBar;
     private bool isInToxicGas = false;
     public float damagePerSecond = 5f;
+    public float regenPerSecond = 2f; // Velocidad de regeneración
 
     void Start()
     {
@@ -24,6 +25,10 @@ public class PlayerHealth : MonoBehaviour
         if (isInToxicGas)
         {
             TakeDamage(damagePerSecond * Time.deltaTime);
+        }
+        else if (currentHealth < maxHealth)
+        {
+            RegenerateHealth(regenPerSecond * Time.deltaTime);
         }
     }
 
@@ -47,6 +52,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         healthBar.value = currentHealth;
 
         if (currentHealth <= 0)
@@ -55,5 +61,12 @@ public class PlayerHealth : MonoBehaviour
             GameManager gm = FindFirstObjectByType<GameManager>();
             gm.GameOver();
         }
+    }
+
+    public void RegenerateHealth(float amount)
+    {
+        currentHealth += amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        healthBar.value = currentHealth;
     }
 }

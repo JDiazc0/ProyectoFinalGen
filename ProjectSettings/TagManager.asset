@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - Recolectable
+  - Office
+  - ToxicGas
+  - Clapper
+  - Mug
   layers:
   - Default
   - TransparentFX
@@ -12,8 +16,8 @@ TagManager:
   - Office
   - Water
   - UI
-  - 
-  - 
+  - Grabbable
+  - Terapia
   - 
   - 
   - 

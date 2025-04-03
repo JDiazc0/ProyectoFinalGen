@@ -4,35 +4,19 @@ using TMPro;
 public class Counter : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI timerText;
-    private float timeLimit = 500f;
-    private float timeRemaining;
+    private float elapsedTime = 0f;
     private bool isRunning = false;
-
+    
     void Start()
     {
-        RestartTimer();
+        StartTimer();
     }
 
     void Update()
     {
-        if (isRunning && timeRemaining > 0)
+        if (isRunning)
         {
-            timeRemaining -= Time.deltaTime;
-            if (timeRemaining <= 0)
-            {
-                timeRemaining = 0;
-                isRunning = false;
-                UpdateTimerText();
-
-                if (GameManager.Instance != null)
-                {
-                    GameManager.Instance.RestartGame();
-                }
-                else
-                {
-                    Debug.LogError("GameManager instance not found!");
-                }
-            }
+            elapsedTime += Time.deltaTime;
             UpdateTimerText();
         }
     }
@@ -41,17 +25,30 @@ public class Counter : MonoBehaviour
     {
         if (timerText != null)
         {
-            timerText.text = $"Time: {timeRemaining:F2}";
+            timerText.text = $"Time: {elapsedTime:F2}";
         }
     }
 
     public void PauseTimer() => isRunning = false;
     public void ResumeTimer() => isRunning = true;
 
-    public void RestartTimer()
+    public void StartTimer()
     {
-        timeRemaining = timeLimit;
-        isRunning = true;
+        elapsedTime = 0f;
+        isRunning = true;        
         UpdateTimerText();
+    }
+
+    public void StopTimerAndRestartGame()
+    {
+        isRunning = false;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.RestartGame();
+        }
+        else
+        {
+            Debug.LogError("GameManager instance not found!");
+        }
     }
 }

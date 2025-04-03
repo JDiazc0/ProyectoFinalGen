@@ -9,11 +9,13 @@ public class PauseMenu : MonoBehaviour
     public Slider _musicSlider;
     public Slider _sfxSlider;
     public Toggle _muteToggle;
+    private FirstPersonLook lookScript;
 
     private void Start()
     {
         InitializeVolumeControls();
         pausePanel.SetActive(false);
+        lookScript = Object.FindFirstObjectByType<FirstPersonLook>();
     }
 
     void Update()
@@ -26,8 +28,15 @@ public class PauseMenu : MonoBehaviour
 
     public void TogglePause()
     {
-        bool isPaused = GameManager.Instance.TogglePause();
-        pausePanel.SetActive(isPaused);
+        GameManager.Instance.TogglePause();
+        pausePanel.SetActive(GameManager.Instance.IsPaused);
+
+        // Actualizar el estado del cursor
+        if (lookScript != null)
+        {
+            Debug.Log("Updating cursor state in PauseMenu.");
+            lookScript.UpdateCursorState();
+        }
     }
 
     private void InitializeVolumeControls()

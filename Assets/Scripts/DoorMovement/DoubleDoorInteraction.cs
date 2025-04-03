@@ -9,7 +9,6 @@ public class DoubleDoorInteraction : MonoBehaviour
     public float openSpeed = 2f;
     public AudioClip openSound;  // Sonido de apertura
     public AudioClip closeSound; // Sonido de cierre
-    public Transform player;     // Referencia al jugador
     public float detectionRange = 2.5f; // Distancia para activar la puerta
 
     private bool isOpen = false;
@@ -17,26 +16,39 @@ public class DoubleDoorInteraction : MonoBehaviour
     private Quaternion closedRotationRight, openRotationRight;
     private Coroutine _currentCoroutine;
     private AudioSource _audioSource;
+    private Transform player; // Referencia al jugador
 
     private void Start()
     {
+        // Buscar al jugador por la etiqueta "Player"
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        if (player == null)
+        {
+            Debug.LogError("No se encontró un GameObject con la etiqueta 'Player'. Asegúrate de que el jugador tiene la etiqueta correctamente asignada.");
+            return;
+        }
+
         closedRotationLeft = doorLeft.transform.rotation;
         closedRotationRight = doorRight.transform.rotation;
 
         openRotationLeft = Quaternion.Euler(doorLeft.transform.eulerAngles - new Vector3(0, openAngle, 0));
         openRotationRight = Quaternion.Euler(doorRight.transform.eulerAngles + new Vector3(0, openAngle, 0));
 
+        // Verificar y agregar AudioSource si es necesario
         _audioSource = GetComponent<AudioSource>();
         if (_audioSource == null)
         {
             _audioSource = gameObject.AddComponent<AudioSource>();
+            Debug.LogWarning("Se agregó un AudioSource automáticamente porque no existía.");
         }
     }
 
     private void Update()
     {
+        if (player == null) return;
+
         // Verificar si el jugador está cerca
-        if (player != null && Vector3.Distance(transform.position, player.position) <= detectionRange)
+        if (Vector3.Distance(transform.position, player.position) <= detectionRange)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {

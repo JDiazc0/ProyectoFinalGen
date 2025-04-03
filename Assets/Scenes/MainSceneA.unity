@@ -20880,10 +20880,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 954986122222672198, guid: 971fe86e031f3574f985650d4f155024, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296092965809711981, guid: 971fe86e031f3574f985650d4f155024, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1322604873181790951, guid: 971fe86e031f3574f985650d4f155024, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: e7c5cb1ae2bd9804d94a95bed86a99e4, type: 3}
+    - target: {fileID: 6509105834957016719, guid: 971fe86e031f3574f985650d4f155024, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6717914719865110181, guid: 971fe86e031f3574f985650d4f155024, type: 3}
       propertyPath: m_Name
       value: MapUI

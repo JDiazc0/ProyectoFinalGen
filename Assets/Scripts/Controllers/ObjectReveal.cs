@@ -23,7 +23,7 @@ public class ObjectReveal : MonoBehaviour
         }
 
         // Si ya tiene los tres objetos necesarios, revela el objeto oculto
-        if (objetosRecolectados.Count == 3 && objetoOculto != null)
+        if (objetosRecolectados.Count == 1 && objetoOculto != null)
         {
             objetoOculto.SetActive(true);
         }

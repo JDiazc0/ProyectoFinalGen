@@ -13,7 +13,7 @@ public class Collectible : MonoBehaviour
             {
                 manager.RecogerObjeto(nombreObjeto); // Informa al script de revelación
             }
-            Destroy(gameObject); // Destruye el objeto recogido
+            //Destroy(gameObject); // Destruye el objeto recogido
         }
     }
 }

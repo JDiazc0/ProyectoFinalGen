@@ -10,7 +10,7 @@ public class Proyector : MonoBehaviour
     public TextMeshProUGUI mensajeText;
     public VideoClip[] videos;
     public string[] mensajes;
-    private bool hasPlayed = false;
+    private bool isPlaying = false;
     public DoubleDoorInteraction scriptAControlar;
 
     void Start()
@@ -25,11 +25,13 @@ public class Proyector : MonoBehaviour
         {
             scriptAControlar.enabled = false;
         }
+
+        videoPlayer.loopPointReached += OnVideoEnd;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!hasPlayed)
+        if (!isPlaying)
         {
             if (other.CompareTag("escena1"))
             {
@@ -46,26 +48,22 @@ public class Proyector : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("escena1") || other.CompareTag("escena2") || other.CompareTag("escena3"))
-        {
-            videoPlayer.Stop();
-            hasPlayed = false;
-            OcultarMensaje();
-        }
-    }
-
     private void ReproducirVideo(int index)
     {
         if (index < videos.Length && index < mensajes.Length)
         {
             videoPlayer.clip = videos[index];
             videoPlayer.Play();
-            hasPlayed = true;
+            isPlaying = true;
             ActivarScript();
             StartCoroutine(MostrarMensajePorTiempo(mensajes[index], 3f));
         }
+    }
+
+    private void OnVideoEnd(VideoPlayer vp)
+    {
+        isPlaying = false;
+        OcultarMensaje();
     }
 
     public void ActivarScript()
@@ -96,6 +94,7 @@ public class Proyector : MonoBehaviour
         }
     }
 }
+
 
 
 

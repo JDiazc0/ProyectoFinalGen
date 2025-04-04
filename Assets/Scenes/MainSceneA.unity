@@ -501,6 +501,10 @@ PrefabInstance:
       propertyPath: interactionPanel
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3088910035712388820, guid: 11a41c6f97f584140be4968f5c8ee67f, type: 3}
+      propertyPath: interactionCanvas
+      value: 
+      objectReference: {fileID: 1944896279}
     - target: {fileID: 6729288011151360260, guid: 11a41c6f97f584140be4968f5c8ee67f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.181
@@ -865,6 +869,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asylum
       objectReference: {fileID: 0}
+    - target: {fileID: 1180701202239566074, guid: b0d6a9cfcfb2b354cb5dcef893e699bb, type: 3}
+      propertyPath: expedienteTexto
+      value: 
+      objectReference: {fileID: 111267397}
     - target: {fileID: 2069448718853223844, guid: b0d6a9cfcfb2b354cb5dcef893e699bb, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -10549,6 +10557,10 @@ PrefabInstance:
       propertyPath: interactionPanel
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3088910035712388820, guid: 11a41c6f97f584140be4968f5c8ee67f, type: 3}
+      propertyPath: interactionCanvas
+      value: 
+      objectReference: {fileID: 1944896279}
     - target: {fileID: 3831984000366684308, guid: 11a41c6f97f584140be4968f5c8ee67f, type: 3}
       propertyPath: m_Icon
       value: 
@@ -11438,6 +11450,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3509604296717454270, guid: 77d15cc19a7f1184c95e3b4775d99c6c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1404311345}
+    - targetCorrespondingSourceObject: {fileID: 3509604296717454270, guid: 77d15cc19a7f1184c95e3b4775d99c6c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1404311346}
   m_SourcePrefab: {fileID: 100100000, guid: 77d15cc19a7f1184c95e3b4775d99c6c, type: 3}
 --- !u!4 &1404311343 stripped
 Transform:
@@ -11465,7 +11480,29 @@ MonoBehaviour:
   openSpeed: 2
   openSound: {fileID: 8300000, guid: 6d014450c96949d46876f5f1209250da, type: 3}
   closeSound: {fileID: 8300000, guid: 55cd1a23d96b3a148af1c50923ef263e, type: 3}
-  detectionRange: 1.7
+  playerTag: Player
+  interactionCanvas: {fileID: 1944896279}
+--- !u!65 &1404311346
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404311344}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5864773, y: 2.235113, z: 1}
+  m_Center: {x: -0.29323864, y: 1.0951177, z: 0}
 --- !u!65 &1425851309
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12544,6 +12581,10 @@ PrefabInstance:
       propertyPath: interactionPanel
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3088910035712388820, guid: 11a41c6f97f584140be4968f5c8ee67f, type: 3}
+      propertyPath: interactionCanvas
+      value: 
+      objectReference: {fileID: 1944896279}
     - target: {fileID: 6729288011151360260, guid: 11a41c6f97f584140be4968f5c8ee67f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.2
@@ -15212,7 +15253,8 @@ MonoBehaviour:
   openSpeed: 2
   openSound: {fileID: 8300000, guid: 6d014450c96949d46876f5f1209250da, type: 3}
   closeSound: {fileID: 8300000, guid: 55cd1a23d96b3a148af1c50923ef263e, type: 3}
-  detectionRange: 1.7
+  playerTag: Player
+  interactionCanvas: {fileID: 1944896279}
 --- !u!65 &1839831606
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15565,6 +15607,10 @@ PrefabInstance:
       propertyPath: interactionPanel
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3088910035712388820, guid: 11a41c6f97f584140be4968f5c8ee67f, type: 3}
+      propertyPath: interactionCanvas
+      value: 
+      objectReference: {fileID: 1944896279}
     - target: {fileID: 6729288011151360260, guid: 11a41c6f97f584140be4968f5c8ee67f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.22
@@ -16117,6 +16163,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 437707205}
     m_Modifications:
+    - target: {fileID: 4479843541751543257, guid: 03a205ca774a6304a92ea20283fd790b, type: 3}
+      propertyPath: m_Pivot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479843541751543257, guid: 03a205ca774a6304a92ea20283fd790b, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479843541751543257, guid: 03a205ca774a6304a92ea20283fd790b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479843541751543257, guid: 03a205ca774a6304a92ea20283fd790b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479843541751543257, guid: 03a205ca774a6304a92ea20283fd790b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479843541751543257, guid: 03a205ca774a6304a92ea20283fd790b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479843541751543257, guid: 03a205ca774a6304a92ea20283fd790b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000061035156
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479843541751543257, guid: 03a205ca774a6304a92ea20283fd790b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5994066576557062498, guid: 03a205ca774a6304a92ea20283fd790b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -16197,9 +16275,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6239932040711589821, guid: 03a205ca774a6304a92ea20283fd790b, type: 3}
+      propertyPath: m_Pivot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6239932040711589821, guid: 03a205ca774a6304a92ea20283fd790b, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6239932040711589821, guid: 03a205ca774a6304a92ea20283fd790b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6239932040711589821, guid: 03a205ca774a6304a92ea20283fd790b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6239932040711589821, guid: 03a205ca774a6304a92ea20283fd790b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6239932040711589821, guid: 03a205ca774a6304a92ea20283fd790b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6239932040711589821, guid: 03a205ca774a6304a92ea20283fd790b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000061035156
+      objectReference: {fileID: 0}
+    - target: {fileID: 6239932040711589821, guid: 03a205ca774a6304a92ea20283fd790b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7101237531110419796, guid: 03a205ca774a6304a92ea20283fd790b, type: 3}
       propertyPath: m_Name
       value: InteractivePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7101237531110419796, guid: 03a205ca774a6304a92ea20283fd790b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8708683604835205528, guid: 03a205ca774a6304a92ea20283fd790b, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16243,6 +16361,10 @@ PrefabInstance:
       propertyPath: interactionPanel
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3088910035712388820, guid: 11a41c6f97f584140be4968f5c8ee67f, type: 3}
+      propertyPath: interactionCanvas
+      value: 
+      objectReference: {fileID: 1944896279}
     - target: {fileID: 6729288011151360260, guid: 11a41c6f97f584140be4968f5c8ee67f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21.49

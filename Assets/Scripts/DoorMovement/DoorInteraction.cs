@@ -7,25 +7,18 @@ public class DoorInteraction : MonoBehaviour
     public float openSpeed = 2f;
     public AudioClip openSound;  // Sonido de apertura
     public AudioClip closeSound; // Sonido de cierre
-    public float detectionRange = 1.7f; // Distancia para activar la puerta
+    public string playerTag = "Player"; // Tag público para identificar al jugador
+    public RectTransform interactionCanvas; // Referencia al Canvas
 
-    private Transform player; // Referencia dinámica al jugador
     private bool isOpen = false;
     private Quaternion _closedRotation;
     private Quaternion _openRotation;
     private Coroutine _currentCoroutine;
     private AudioSource _audioSource;
+    private bool _playerInRange = false;
 
     private void Start()
     {
-        // Buscar al jugador por la etiqueta "Player"
-        player = GameObject.FindGameObjectWithTag("Player")?.transform;
-        if (player == null)
-        {
-            Debug.LogError("No se encontró un GameObject con la etiqueta 'Player'. Asegúrate de que el jugador tenga la etiqueta correctamente asignada.");
-            return;
-        }
-
         _closedRotation = transform.rotation;
         _openRotation = Quaternion.Euler(transform.eulerAngles - new Vector3(0, openAngle, 0));
 
@@ -36,18 +29,43 @@ public class DoorInteraction : MonoBehaviour
             _audioSource = gameObject.AddComponent<AudioSource>();
             Debug.LogWarning("Se agregó un AudioSource automáticamente porque no existía.");
         }
+
+        // Desactivar el canvas al inicio si está asignado
+        if (interactionCanvas != null)
+        {
+            interactionCanvas.gameObject.SetActive(false);
+        }
     }
 
     private void Update()
     {
-        if (player == null) return; // Evita errores si no hay jugador
-
-        if (Vector3.Distance(transform.position, player.position) <= detectionRange)
+        if (_playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (_currentCoroutine != null) StopCoroutine(_currentCoroutine);
+            _currentCoroutine = StartCoroutine(ToggleDoor());
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(playerTag))
+        {
+            _playerInRange = true;
+            if (interactionCanvas != null)
             {
-                if (_currentCoroutine != null) StopCoroutine(_currentCoroutine);
-                _currentCoroutine = StartCoroutine(ToggleDoor());
+                interactionCanvas.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag(playerTag))
+        {
+            _playerInRange = false;
+            if (interactionCanvas != null)
+            {
+                interactionCanvas.gameObject.SetActive(false);
             }
         }
     }

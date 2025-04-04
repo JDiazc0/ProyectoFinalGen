@@ -13,25 +13,25 @@ public class TextFormat : MonoBehaviour
 
             "<b><color=#FFA500>Game Programmers</color></b>\n" +
             "Antheo Mauricio Patarroyo\n" +
-            "Camilo Varga Cortes\n" +
+            "Camilo Vargas Cortes\n" +
             "Carlos Botina\n" +
             "Jhoan Andres Diaz\n\n" +
 
             "<b><color=#FFA500>Game Testers</color></b>\n" +
             "Antheo Mauricio Patarroyo\n" +
-            "Camilo Varga Cortes\n" +
+            "Camilo Vargas Cortes\n" +
 
             "<b><color=#FFA500>Game Level Designers</color></b>\n" +
             "Antheo Mauricio Patarroyo\n" +
-            "Camilo Varga Cortes\n" +
-            "Carlos Botina\n" +
+            "Camilo Vargas Cortes\n" +
+            "Carlos Botina\n\n" +
 
             "<b><color=#FFA500>UX/UI Programmer</color></b>\n" +
             "Jhoan Andres Diaz\n\n" +
 
             "<b><color=#FFA500>VFX Programmer</color></b>\n" +
             "Antheo Mauricio Patarroyo\n" +
-            "Carlos Botina\n" +
+            "Carlos Botina\n\n" +
 
             "<b><color=#FFA500>SFX Programmer</color></b>\n" +
             "Jhoan Andres Diaz\n\n" +

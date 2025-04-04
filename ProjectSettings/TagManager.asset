@@ -9,6 +9,9 @@ TagManager:
   - ToxicGas
   - Clapper
   - Mug
+  - escena1
+  - escena2
+  - escena3
   layers:
   - Default
   - TransparentFX

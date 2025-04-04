@@ -1,15 +1,16 @@
 using UnityEngine;
 using UnityEngine.Video;
 using TMPro;
+using System.Collections;
 
 public class Proyector : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
     public AudioSource audioSource;
-    public TextMeshProUGUI mensajeText; // Referencia al TextMeshPro
-    private bool isNearProjector = false;
+    public TextMeshProUGUI mensajeText;
+    public VideoClip[] videos;
+    public string[] mensajes;
     private bool hasPlayed = false;
-    public string grabbableLayerName = "Grabbable";
     public DoubleDoorInteraction scriptAControlar;
 
     void Start()
@@ -18,7 +19,7 @@ public class Proyector : MonoBehaviour
         videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
         videoPlayer.EnableAudioTrack(0, true);
         videoPlayer.SetTargetAudioSource(0, audioSource);
-        mensajeText.gameObject.SetActive(false); // Oculta el mensaje al inicio
+        mensajeText.gameObject.SetActive(false);
 
         if (scriptAControlar != null)
         {
@@ -26,36 +27,44 @@ public class Proyector : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (isNearProjector && !hasPlayed)
-        {
-            if (!videoPlayer.isPlaying)
-            {
-                videoPlayer.Play();
-                hasPlayed = true;
-                ActivarScript();
-                MostrarMensaje("En este lugar, el aroma es fuerte,donde el líquido oscuro es reconfortante.La gente aquí viene a charlar o estudiar,y muchos se sientan con tazas a esperar.¿Qué lugar es?");
-            }
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer(grabbableLayerName))
+        if (!hasPlayed)
         {
-            isNearProjector = true;
+            if (other.CompareTag("escena1"))
+            {
+                ReproducirVideo(0);
+            }
+            else if (other.CompareTag("escena2"))
+            {
+                ReproducirVideo(1);
+            }
+            else if (other.CompareTag("escena3"))
+            {
+                ReproducirVideo(2);
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer(grabbableLayerName))
+        if (other.CompareTag("escena1") || other.CompareTag("escena2") || other.CompareTag("escena3"))
         {
-            isNearProjector = false;
-            videoPlayer.Stop(); // Detener el video cuando el objeto se aleje
-            hasPlayed = false; // Permite volver a reproducir el video si el objeto se acerca de nuevo
+            videoPlayer.Stop();
+            hasPlayed = false;
             OcultarMensaje();
+        }
+    }
+
+    private void ReproducirVideo(int index)
+    {
+        if (index < videos.Length && index < mensajes.Length)
+        {
+            videoPlayer.clip = videos[index];
+            videoPlayer.Play();
+            hasPlayed = true;
+            ActivarScript();
+            StartCoroutine(MostrarMensajePorTiempo(mensajes[index], 3f));
         }
     }
 
@@ -68,12 +77,14 @@ public class Proyector : MonoBehaviour
         }
     }
 
-    private void MostrarMensaje(string mensaje)
+    private IEnumerator MostrarMensajePorTiempo(string mensaje, float tiempo)
     {
         if (mensajeText != null)
         {
             mensajeText.text = mensaje;
             mensajeText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(tiempo);
+            OcultarMensaje();
         }
     }
 
@@ -85,6 +96,7 @@ public class Proyector : MonoBehaviour
         }
     }
 }
+
 
 
 

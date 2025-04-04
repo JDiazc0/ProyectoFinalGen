@@ -27755,7 +27755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1346a2f974d86c44688a7146ddb00543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expedienteTexto: {fileID: 0}
+  expedienteTexto: {fileID: 1345461580}
   expediente: "Daniel Carte\nEdad: 23 a\xF1os\nDiagn\xF3stico: Trastorno de Ansiedad
     Generalizada (TAG), Episodio Depresivo Moderado.\nMotivo de Consulta: Ansiedad
     intensa, insomnio y dificultad para concentrarse.\nTratamiento: Psicoterapia

@@ -12,6 +12,7 @@ public class Proyector : MonoBehaviour
     public string[] mensajes;
     private bool isPlaying = false;
     public DoubleDoorInteraction scriptAControlar;
+    public GameObject llave;
 
     void Start()
     {
@@ -40,10 +41,20 @@ public class Proyector : MonoBehaviour
             else if (other.CompareTag("escena2"))
             {
                 ReproducirVideo(1);
+                GameObject llave = GameObject.Find("key(Clone)");
+            if (llave != null)
+            {
+                llave.tag = "Terapia";
+            }
+
             }
             else if (other.CompareTag("escena3"))
             {
                 ReproducirVideo(2);
+            }
+            if (llave != null)
+            {
+                llave.tag = "Office2";
             }
         }
     }

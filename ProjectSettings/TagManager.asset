@@ -8,6 +8,12 @@ TagManager:
   - Office
   - ToxicGas
   - Clapper
+  - Mug
+  - escena1
+  - escena2
+  - escena3
+  - Terapia
+  - Office2
   layers:
   - Default
   - TransparentFX

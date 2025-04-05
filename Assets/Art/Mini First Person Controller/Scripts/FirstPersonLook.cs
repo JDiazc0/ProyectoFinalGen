@@ -47,3 +47,4 @@ public class FirstPersonLook : MonoBehaviour
         Cursor.visible = GameManager.Instance.IsPaused;
     }
 }
+

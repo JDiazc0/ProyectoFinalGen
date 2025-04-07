@@ -61,5 +61,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("Regresando al menú principal...");
         SceneManager.LoadScene(0);
     }
-
+    public void CloseGame()
+    {
+        Application.Quit();
+    }
 }

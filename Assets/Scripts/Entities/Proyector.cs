@@ -13,6 +13,7 @@ public class Proyector : MonoBehaviour
     private bool isPlaying = false;
     public DoubleDoorInteraction scriptAControlar;
     public GameObject llave;
+    public GameObject llave2;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class Proyector : MonoBehaviour
         videoPlayer.SetTargetAudioSource(0, audioSource);
         mensajeText.gameObject.SetActive(false);
         llave.SetActive(false);
+        llave2.SetActive(false);
 
         if (scriptAControlar != null)
         {
@@ -51,6 +53,11 @@ public class Proyector : MonoBehaviour
             else if (other.CompareTag("escena3"))
             {
                 ReproducirVideo(2);
+                if (llave2 != null)
+                {
+                    llave2.SetActive(true);
+                    Debug.Log("¡Llave activada!");
+                }
             }
             
         }

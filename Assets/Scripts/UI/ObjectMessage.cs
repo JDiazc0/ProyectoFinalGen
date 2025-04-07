@@ -9,7 +9,7 @@ public class ObjectMessage : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("El objeto " + other.gameObject.name + " entró en el trigger.");
+            Debug.Log("El objeto " + other.gameObject.name + " entrï¿½ en el trigger.");
             canvasMensaje.SetActive(true);
         }
         if (other.CompareTag("Mug"))
@@ -23,7 +23,7 @@ public class ObjectMessage : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("El objeto " + other.gameObject.name + " salió del trigger.");
+            Debug.Log("El objeto " + other.gameObject.name + " saliï¿½ del trigger.");
             canvasMensaje.SetActive(false);
         }
     }

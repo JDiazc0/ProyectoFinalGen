@@ -1,13 +1,13 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
-public class FloorTrigger : MonoBehaviour
+public class FloorTrigger1 : MonoBehaviour
 {
-    public int floorNumber; // 0 = Subterráneo, 1 = Primer piso, 2 = Segundo piso
+    public int floorNumber; // 0 = Subterrï¿½neo, 1 = Primer piso, 2 = Segundo piso
     public MapManager mapManager; // Asignar manualmente en Unity
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(" Algo entró en el trigger: " + other.name);
+        Debug.Log(" Algo entro en el trigger: " + other.name);
 
         if (other.CompareTag("Player"))
         {
@@ -15,7 +15,7 @@ public class FloorTrigger : MonoBehaviour
             if (mapManager != null)
             {
                 Debug.Log(" Jugador detectado en el trigger del piso: " + floorNumber);
-                mapManager.ChangeFloor(floorNumber); // Llamada al método ChangeFloor
+                mapManager.ChangeFloor(floorNumber); // Llamada al mï¿½todo ChangeFloor
             }
 
         }

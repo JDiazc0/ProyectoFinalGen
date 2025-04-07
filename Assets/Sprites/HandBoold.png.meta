@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 74d1649c1285ee3439424ce9b980e3b9
+guid: 660a96f17b5ad734babb1d3f8579f03a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -94,33 +94,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -136,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FondouI_0
+      name: HandBoold_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 626
-        height: 297
+        y: 2
+        width: 358
+        height: 660
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,8 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01840a86741a82c448d5cefbb965b6ee
-      internalID: -1927428104
+      spriteID: 46a6c4eefcf2f4a40804357c36c6954f
+      internalID: -1607588496
       vertices: []
       indices: 
       edges: []
@@ -161,7 +135,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 7a9407aed09510241a11c07f371744b5
+    spriteID: 4475a55dd138d1048a3082e62f2a6b30
     internalID: 0
     vertices: []
     indices: 
@@ -171,7 +145,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      FondouI_0: -1927428104
+      HandBoold_0: -1607588496
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

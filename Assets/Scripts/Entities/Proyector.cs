@@ -21,6 +21,7 @@ public class Proyector : MonoBehaviour
         videoPlayer.EnableAudioTrack(0, true);
         videoPlayer.SetTargetAudioSource(0, audioSource);
         mensajeText.gameObject.SetActive(false);
+        llave.SetActive(false);
 
         if (scriptAControlar != null)
         {
@@ -41,21 +42,17 @@ public class Proyector : MonoBehaviour
             else if (other.CompareTag("escena2"))
             {
                 ReproducirVideo(1);
-                GameObject llave = GameObject.Find("key(Clone)");
-            if (llave != null)
-            {
-                llave.tag = "Terapia";
-            }
-
+                if (llave != null)
+                {
+                    llave.SetActive(true);
+                    Debug.Log("¡Llave activada!");
+                }
             }
             else if (other.CompareTag("escena3"))
             {
                 ReproducirVideo(2);
             }
-            if (llave != null)
-            {
-                llave.tag = "Office2";
-            }
+            
         }
     }
 

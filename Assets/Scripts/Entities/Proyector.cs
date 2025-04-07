@@ -1,16 +1,19 @@
 using UnityEngine;
 using UnityEngine.Video;
 using TMPro;
+using System.Collections;
 
 public class Proyector : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
     public AudioSource audioSource;
-    public TextMeshProUGUI mensajeText; // Referencia al TextMeshPro
-    private bool isNearProjector = false;
-    private bool hasPlayed = false;
-    public string grabbableLayerName = "Grabbable";
+    public TextMeshProUGUI mensajeText;
+    public VideoClip[] videos;
+    public string[] mensajes;
+    private bool isPlaying = false;
     public DoubleDoorInteraction scriptAControlar;
+    public GameObject llave;
+    public GameObject llave2;
 
     void Start()
     {
@@ -18,45 +21,64 @@ public class Proyector : MonoBehaviour
         videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
         videoPlayer.EnableAudioTrack(0, true);
         videoPlayer.SetTargetAudioSource(0, audioSource);
-        mensajeText.gameObject.SetActive(false); // Oculta el mensaje al inicio
+        mensajeText.gameObject.SetActive(false);
+        llave.SetActive(false);
+        llave2.SetActive(false);
 
         if (scriptAControlar != null)
         {
             scriptAControlar.enabled = false;
         }
-    }
 
-    void Update()
-    {
-        if (isNearProjector && !hasPlayed)
-        {
-            if (!videoPlayer.isPlaying)
-            {
-                videoPlayer.Play();
-                hasPlayed = true;
-                ActivarScript();
-                MostrarMensaje("En este lugar, el aroma es fuerte,donde el líquido oscuro es reconfortante.La gente aquí viene a charlar o estudiar,y muchos se sientan con tazas a esperar.¿Qué lugar es?");
-            }
-        }
+        videoPlayer.loopPointReached += OnVideoEnd;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer(grabbableLayerName))
+        if (!isPlaying)
         {
-            isNearProjector = true;
+            if (other.CompareTag("escena1"))
+            {
+                ReproducirVideo(0);
+            }
+            else if (other.CompareTag("escena2"))
+            {
+                ReproducirVideo(1);
+                if (llave != null)
+                {
+                    llave.SetActive(true);
+                    Debug.Log("¡Llave activada!");
+                }
+            }
+            else if (other.CompareTag("escena3"))
+            {
+                ReproducirVideo(2);
+                if (llave2 != null)
+                {
+                    llave2.SetActive(true);
+                    Debug.Log("¡Llave activada!");
+                }
+            }
+            
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void ReproducirVideo(int index)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer(grabbableLayerName))
+        if (index < videos.Length && index < mensajes.Length)
         {
-            isNearProjector = false;
-            videoPlayer.Stop(); // Detener el video cuando el objeto se aleje
-            hasPlayed = false; // Permite volver a reproducir el video si el objeto se acerca de nuevo
-            OcultarMensaje();
+            videoPlayer.clip = videos[index];
+            videoPlayer.Play();
+            isPlaying = true;
+            ActivarScript();
+            StartCoroutine(MostrarMensajePorTiempo(mensajes[index], 5f));
         }
+    }
+
+    private void OnVideoEnd(VideoPlayer vp)
+    {
+        isPlaying = false;
+        OcultarMensaje();
     }
 
     public void ActivarScript()
@@ -68,12 +90,14 @@ public class Proyector : MonoBehaviour
         }
     }
 
-    private void MostrarMensaje(string mensaje)
+    private IEnumerator MostrarMensajePorTiempo(string mensaje, float tiempo)
     {
         if (mensajeText != null)
         {
             mensajeText.text = mensaje;
             mensajeText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(tiempo);
+            OcultarMensaje();
         }
     }
 
@@ -85,6 +109,8 @@ public class Proyector : MonoBehaviour
         }
     }
 }
+
+
 
 
 

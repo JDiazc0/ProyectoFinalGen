@@ -14,6 +14,7 @@ public class Proyector : MonoBehaviour
     public DoubleDoorInteraction scriptAControlar;
     public GameObject llave;
     public GameObject llave2;
+    public GameObject LlaveTerapia;
 
     void Start()
     {
@@ -44,24 +45,25 @@ public class Proyector : MonoBehaviour
             else if (other.CompareTag("escena2"))
             {
                 ReproducirVideo(1);
-                if (llave != null)
+
+                GameObject player = GameObject.Find("Player");
+                if (player != null)
                 {
-                    llave.SetActive(true);
-                    Debug.Log("¡Llave activada!");
+                    player.tag = "Terapia";
+                }
+                else
+                {
+                    Debug.LogWarning("No se encontró un objeto con el nombre 'Player'.");
                 }
             }
             else if (other.CompareTag("escena3"))
             {
                 ReproducirVideo(2);
-                if (llave2 != null)
-                {
-                    llave2.SetActive(true);
-                    Debug.Log("¡Llave activada!");
-                }
+                LlaveTerapia.SetActive(true);
             }
-            
         }
     }
+
 
     private void ReproducirVideo(int index)
     {

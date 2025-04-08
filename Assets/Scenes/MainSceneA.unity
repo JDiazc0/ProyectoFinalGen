@@ -6042,7 +6042,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9081242206680119104, guid: b0d6a9cfcfb2b354cb5dcef893e699bb, type: 3}
       propertyPath: 'mensajes.Array.data[2]'
-      value: La claqueta 3 es la llave para salir
+      value: La claqueta 3 es la llave para romper el bucle
       objectReference: {fileID: 0}
     - target: {fileID: 9115287943067042683, guid: b0d6a9cfcfb2b354cb5dcef893e699bb, type: 3}
       propertyPath: m_Material
@@ -79763,7 +79763,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &8192029407561385181
 GameObject:
   m_ObjectHideFlags: 0

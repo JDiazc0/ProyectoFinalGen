@@ -12,6 +12,8 @@ public class FinalManager : MonoBehaviour
     public Image targetImage;
     public GameObject interactionCanvas;
 
+    public GameObject inventoryPanel;
+
     [Header("Arrays de Imágenes")]
     public Sprite[] imageFinalOne;
     public Sprite[] imageFinalTwo;
@@ -40,6 +42,7 @@ public class FinalManager : MonoBehaviour
     {
         if (_playerInRange && Input.GetKeyDown(KeyCode.E) && !_isPlayingSequence)
         {
+            inventoryPanel.SetActive(false);
             StartCoroutine(PlayImageSequence());
         }
     }

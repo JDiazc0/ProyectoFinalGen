@@ -28013,6 +28013,10 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 3965214443354333124, guid: 1d2bf7aac8aa6ae4fbde368d61c054cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4541520394522155621, guid: 1d2bf7aac8aa6ae4fbde368d61c054cb, type: 3}
       propertyPath: m_Name
       value: Player
@@ -35189,6 +35193,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77d15cc19a7f1184c95e3b4775d99c6c, type: 3}
+--- !u!1 &955270362 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3965214443354333124, guid: 1d2bf7aac8aa6ae4fbde368d61c054cb, type: 3}
+  m_PrefabInstance: {fileID: 715229293}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &959630423 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2323451811611917846, guid: b0d6a9cfcfb2b354cb5dcef893e699bb, type: 3}
@@ -46671,6 +46680,7 @@ MonoBehaviour:
   imagePanel: {fileID: 1909115641}
   targetImage: {fileID: 1909115640}
   interactionCanvas: {fileID: 1944896280}
+  inventoryPanel: {fileID: 955270362}
   imageFinalOne:
   - {fileID: -1046299970, guid: 8034b50db7f7c8a4b916c2ea88353256, type: 3}
   imageFinalTwo:

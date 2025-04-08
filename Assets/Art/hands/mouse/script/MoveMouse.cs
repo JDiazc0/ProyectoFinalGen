@@ -45,12 +45,20 @@ public class MoveMouse : MonoBehaviour
 
     void Wander()
     {
+        if (!agent.isOnNavMesh)
+        {
+            Debug.LogWarning("El agente no está sobre el NavMesh.");
+            return;
+        }
+
         Vector3 randomDirection = Random.insideUnitSphere * moveRadius;
         randomDirection += originalPosition;
         NavMeshHit hit;
-        NavMesh.SamplePosition(randomDirection, out hit, moveRadius, 1);
-        agent.speed = speed;
-        agent.SetDestination(hit.position);
+        if (NavMesh.SamplePosition(randomDirection, out hit, moveRadius, 1))
+        {
+            agent.speed = speed;
+            agent.SetDestination(hit.position);
+        }
     }
 
     void Flee()

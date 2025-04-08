@@ -14,7 +14,7 @@ TagManager:
   - escena3
   - Terapia
   - Office2
-  - exit
+  - wall
   layers:
   - Default
   - TransparentFX

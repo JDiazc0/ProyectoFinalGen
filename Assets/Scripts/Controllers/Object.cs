@@ -2,19 +2,17 @@ using UnityEngine;
 using TMPro; 
 public class Object : MonoBehaviour
 {
-    public GameObject objetoOculto; // Objeto que se revelará
-    public GameObject objetoOculto2; // Objeto que se revelará
+    public GameObject objetoOculto; // Objeto que se revelará    
     public TextMeshProUGUI mensajeTexto; // Texto que mostrará el mensaje
     public string mensaje = "¡Objeto encontrado,Dirígete a la cocina!"; // Mensaje personalizado
     public float tiempoMensaje = 2f; // Tiempo que el mensaje estará visible
-
     public GameObject puerta;
 
     private void Start()
     {
         if (objetoOculto != null)
             objetoOculto.SetActive(false); // Asegura que el objeto inicie oculto
-            objetoOculto2.SetActive(false); // Asegura que el objeto inicie oculto
+            
 
         if (mensajeTexto != null)
             mensajeTexto.gameObject.SetActive(false); // Oculta el mensaje al inicio
@@ -26,7 +24,7 @@ public class Object : MonoBehaviour
         {
             if (objetoOculto != null)
                 objetoOculto.SetActive(true); // Muestra el objeto oculto
-                objetoOculto2.SetActive(true); // Muestra el objeto oculto
+                
 
             GameObject player = GameObject.Find("Terapia");
             if (player != null)

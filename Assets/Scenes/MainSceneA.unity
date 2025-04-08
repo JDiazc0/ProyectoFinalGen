@@ -22713,7 +22713,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objetoOculto: {fileID: 7461523074483511967}
-  objetoOculto2: {fileID: 0}
   mensajeTexto: {fileID: 1345461580}
   mensaje: "\xA1Objeto encontrado!, Encuentra el portal de salida"
   tiempoMensaje: 7
@@ -26032,7 +26031,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665242791}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f09f15f82e87a7d4d824fbff7c04324e, type: 3}
   m_Name: 

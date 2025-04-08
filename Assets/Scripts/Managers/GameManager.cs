@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("MainSceneA");
     }
 
     public void GameOver()

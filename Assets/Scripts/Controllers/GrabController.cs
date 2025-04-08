@@ -70,7 +70,7 @@ public class GrabController : MonoBehaviour
         }
 
         // Guardar objeto en el inventario con tecla E
-        if (isHolding && Input.GetKeyDown(KeyCode.E))
+        if (isHolding && Input.GetKeyDown(KeyCode.Q))
         {
             StoreToInventory();
         }

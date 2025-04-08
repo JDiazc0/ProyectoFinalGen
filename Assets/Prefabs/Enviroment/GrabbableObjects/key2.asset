@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: key2
   icon: {fileID: 21300000, guid: dcb665426690f844ba5d0dd3af505495, type: 3}
-  prefab: {fileID: 374289202576707483, guid: 8b862339d859af9498c74516f3791afb, type: 3}
+  prefab: {fileID: 3637002938641589508, guid: b5f46f18829c39844a7baf3d0a6aa76b, type: 3}
   description: Terapia

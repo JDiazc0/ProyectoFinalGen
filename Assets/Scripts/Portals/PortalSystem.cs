@@ -14,12 +14,7 @@ public class PortalSystem : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player")?.transform;
-
-        if (player == null)
-        {
-            return;
-        }
+        FindPlayer();
 
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
@@ -27,7 +22,11 @@ public class PortalSystem : MonoBehaviour
 
     void Update()
     {
-        if (player == null) return; // Evita errores si no hay jugador asignado
+        if (player == null)
+        {
+            FindPlayer(); // Intenta buscarlo de nuevo en caso de que haya cambiado de etiqueta
+            return;
+        }
 
         float distance = Vector3.Distance(transform.position, player.position);
 
@@ -35,6 +34,17 @@ public class PortalSystem : MonoBehaviour
         {
             StartCoroutine(TeleportPlayer());
         }
+    }
+
+    void FindPlayer()
+    {
+        GameObject foundPlayer = GameObject.FindGameObjectWithTag("Player");
+
+        if (foundPlayer == null)
+            foundPlayer = GameObject.FindGameObjectWithTag("Terapia");
+
+        if (foundPlayer != null)
+            player = foundPlayer.transform;
     }
 
     IEnumerator TeleportPlayer()
@@ -65,7 +75,7 @@ public class PortalSystem : MonoBehaviour
             controller.enabled = true;
         }
 
-        StartCoroutine(FadeOutSound()); // Inicia el fade-out del sonido
+        StartCoroutine(FadeOutSound());
         isTeleporting = false;
     }
 

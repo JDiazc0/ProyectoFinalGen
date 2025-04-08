@@ -19,6 +19,8 @@ public class ElevatorControl : MonoBehaviour
     private bool isAtTop = true; // Ahora inicia en "arriba" y primero baja
     private AudioSource audioSource;
 
+    public RectTransform interactionCanvas;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
@@ -114,5 +116,27 @@ public class ElevatorControl : MonoBehaviour
 
         audioSource.volume = 0f;
         audioSource.Stop();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Exit"))
+        {
+            if (interactionCanvas != null)
+            {
+                interactionCanvas.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Exit"))
+        {
+            if (interactionCanvas != null)
+            {
+                interactionCanvas.gameObject.SetActive(false);
+            }
+        }
     }
 }

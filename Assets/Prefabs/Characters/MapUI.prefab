@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 2181393570393305026}
   - component: {fileID: 8120418641899880067}
   m_Layer: 5
-  m_Name: Floor1
+  m_Name: FirstFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1863612642545404877
 RectTransform:
   m_ObjectHideFlags: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1630484246, guid: 13a3e35a301b18a49aff93b97673d462, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 13a3e35a301b18a49aff93b97673d462, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 7546166571088999418}
   - component: {fileID: 1322604873181790951}
   m_Layer: 5
-  m_Name: Floor2
+  m_Name: SecondFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1314994201, guid: e7c5cb1ae2bd9804d94a95bed86a99e4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e7c5cb1ae2bd9804d94a95bed86a99e4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 6492283062473603510}
   - component: {fileID: 7718848352233865540}
   m_Layer: 5
-  m_Name: Floor0
+  m_Name: Morgue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1079303509, guid: 62b53ba454d79fd4cb1dd869fe08e01d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 62b53ba454d79fd4cb1dd869fe08e01d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -242,7 +242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &782970191258031368
 RectTransform:
   m_ObjectHideFlags: 0

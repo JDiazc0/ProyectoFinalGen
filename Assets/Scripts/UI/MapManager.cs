@@ -10,8 +10,15 @@ public class MapManager : MonoBehaviour
     void Start()
     {
         mapUI.SetActive(false);
-        UpdateMap();
+
+        //  Asegúrate que todos los mapas estén desactivados al inicio
+        firstFloorMap.gameObject.SetActive(false);
+        secondFloorMap.gameObject.SetActive(false);
+        undergroundMap.gameObject.SetActive(false);
+
+        UpdateMap(); // Se activa el mapa correcto si es necesario
     }
+
 
     void Update()
     {

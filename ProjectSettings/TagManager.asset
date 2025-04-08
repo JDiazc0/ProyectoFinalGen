@@ -15,6 +15,7 @@ TagManager:
   - Terapia
   - Office2
   - wall
+  - Exit
   layers:
   - Default
   - TransparentFX

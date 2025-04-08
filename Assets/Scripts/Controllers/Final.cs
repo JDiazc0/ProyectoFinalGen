@@ -23,10 +23,10 @@ public class MutantRatTrigger : MonoBehaviour
             mensajeTexto.text = mensaje;
             mensajeTexto.gameObject.SetActive(true);
             Invoke(nameof(OcultarMensaje), tiempoMensaje);
+            other.tag = "Exit";
         }
 
         // Cambiar la etiqueta del objeto colisionado
-        other.tag = "Exit";
         Debug.Log($"La etiqueta de {other.name} ahora es: {other.tag}");
     }
 

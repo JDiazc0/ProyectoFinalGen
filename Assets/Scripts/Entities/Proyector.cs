@@ -14,7 +14,6 @@ public class Proyector : MonoBehaviour
     public DoubleDoorInteraction scriptAControlar;
     public GameObject llave;
     public GameObject llave2;
-    public GameObject LlaveTerapia;
 
     void Start()
     {
@@ -59,7 +58,6 @@ public class Proyector : MonoBehaviour
             else if (other.CompareTag("escena3"))
             {
                 ReproducirVideo(2);
-                LlaveTerapia.SetActive(true);
             }
         }
     }

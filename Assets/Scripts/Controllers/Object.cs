@@ -8,6 +8,8 @@ public class Object : MonoBehaviour
     public string mensaje = "¡Objeto encontrado,Dirígete a la cocina!"; // Mensaje personalizado
     public float tiempoMensaje = 2f; // Tiempo que el mensaje estará visible
 
+    public GameObject puerta;
+
     private void Start()
     {
         if (objetoOculto != null)
@@ -20,11 +22,21 @@ public class Object : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) // Verifica si el jugador colisiona
+        if (other.CompareTag("Terapia")) // Verifica si el jugador colisiona
         {
             if (objetoOculto != null)
                 objetoOculto.SetActive(true); // Muestra el objeto oculto
                 objetoOculto2.SetActive(true); // Muestra el objeto oculto
+
+            GameObject player = GameObject.Find("Terapia");
+            if (player != null)
+            {
+                player.tag = "Player";
+            }
+            else
+            {
+                Debug.LogWarning("No se encontró un objeto con el nombre 'Player'.");
+            }
 
             if (mensajeTexto != null)
             {
@@ -34,6 +46,23 @@ public class Object : MonoBehaviour
             }
 
             Destroy(gameObject); // Destruye el objeto recogido
+        }
+
+        if (other.CompareTag("Terapia"))
+        {
+            if (puerta != null)
+            {
+                DoorInteraction doorScript = puerta.GetComponent<DoorInteraction>();
+                if (doorScript != null)
+                {
+                    doorScript.enabled = true;
+                    Debug.Log("¡Script de la puerta activado!");
+                }
+                else
+                {
+                    Debug.LogWarning("El objeto no tiene el componente DoorInteraction.");
+                }
+            }
         }
     }
 

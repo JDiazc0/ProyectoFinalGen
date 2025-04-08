@@ -7,7 +7,7 @@ public class ObjectMessage : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Terapia"))
         {
             Debug.Log("El objeto " + other.gameObject.name + " entró en el trigger.");
             canvasMensaje.SetActive(true);
@@ -21,7 +21,7 @@ public class ObjectMessage : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Terapia"))
         {
             Debug.Log("El objeto " + other.gameObject.name + " salió del trigger.");
             canvasMensaje.SetActive(false);

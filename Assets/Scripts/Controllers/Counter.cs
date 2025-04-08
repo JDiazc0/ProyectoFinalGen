@@ -3,10 +3,13 @@ using TMPro;
 
 public class Counter : MonoBehaviour
 {
+    [Header("Configuración")]
     [SerializeField] private TextMeshProUGUI timerText;
-    private float elapsedTime = 0f;
+    [SerializeField] private float initialTime = 900f;
+
+    private float remainingTime;
     private bool isRunning = false;
-    
+
     void Start()
     {
         StartTimer();
@@ -16,8 +19,14 @@ public class Counter : MonoBehaviour
     {
         if (isRunning)
         {
-            elapsedTime += Time.deltaTime;
+            remainingTime -= Time.deltaTime;
+            remainingTime = Mathf.Max(0f, remainingTime);
             UpdateTimerText();
+
+            if (remainingTime <= 0f)
+            {
+                StopTimerAndRestartGame();
+            }
         }
     }
 
@@ -25,7 +34,10 @@ public class Counter : MonoBehaviour
     {
         if (timerText != null)
         {
-            timerText.text = $"Time: {elapsedTime:F2}";
+            // Formato minutos:segundos (MM:SS)
+            int minutes = Mathf.FloorToInt(remainingTime / 60f);
+            int seconds = Mathf.FloorToInt(remainingTime % 60f);
+            timerText.text = $"Tiempo Restante: \n{minutes:00}:{seconds:00}";
         }
     }
 
@@ -34,10 +46,12 @@ public class Counter : MonoBehaviour
 
     public void StartTimer()
     {
-        elapsedTime = 0f;
-        isRunning = true;        
+        remainingTime = initialTime;
+        isRunning = true;
         UpdateTimerText();
     }
+
+    public float GetRemainingTimeInSeconds() => remainingTime;
 
     public void StopTimerAndRestartGame()
     {

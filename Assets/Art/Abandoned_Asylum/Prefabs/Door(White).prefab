@@ -206,7 +206,6 @@ GameObject:
   - component: {fileID: 345641732151371569}
   - component: {fileID: 8067018987735614940}
   - component: {fileID: 1403463798767100114}
-  - component: {fileID: 7879135191823730980}
   m_Layer: 0
   m_Name: DoorHandle
   m_TagString: Untagged
@@ -282,27 +281,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7879135191823730980
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2586910644718232566}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3509604296717454270
 GameObject:
   m_ObjectHideFlags: 0

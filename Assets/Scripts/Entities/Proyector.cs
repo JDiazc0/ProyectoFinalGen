@@ -13,6 +13,7 @@ public class Proyector : MonoBehaviour
     private bool isPlaying = false;
     public DoubleDoorInteraction scriptAControlar;
     public GameObject llave;
+    public GameObject llave2;
 
     void Start()
     {
@@ -21,6 +22,8 @@ public class Proyector : MonoBehaviour
         videoPlayer.EnableAudioTrack(0, true);
         videoPlayer.SetTargetAudioSource(0, audioSource);
         mensajeText.gameObject.SetActive(false);
+        llave.SetActive(false);
+        llave2.SetActive(false);
 
         if (scriptAControlar != null)
         {
@@ -41,23 +44,24 @@ public class Proyector : MonoBehaviour
             else if (other.CompareTag("escena2"))
             {
                 ReproducirVideo(1);
-                GameObject llave = GameObject.Find("key(Clone)");
-            if (llave != null)
-            {
-                llave.tag = "Terapia";
-            }
 
+                GameObject player = GameObject.Find("Player");
+                if (player != null)
+                {
+                    player.tag = "Terapia";
+                }
+                else
+                {
+                    Debug.LogWarning("No se encontró un objeto con el nombre 'Player'.");
+                }
             }
             else if (other.CompareTag("escena3"))
             {
                 ReproducirVideo(2);
             }
-            if (llave != null)
-            {
-                llave.tag = "Office2";
-            }
         }
     }
+
 
     private void ReproducirVideo(int index)
     {
@@ -67,7 +71,7 @@ public class Proyector : MonoBehaviour
             videoPlayer.Play();
             isPlaying = true;
             ActivarScript();
-            StartCoroutine(MostrarMensajePorTiempo(mensajes[index], 3f));
+            StartCoroutine(MostrarMensajePorTiempo(mensajes[index], 5f));
         }
     }
 

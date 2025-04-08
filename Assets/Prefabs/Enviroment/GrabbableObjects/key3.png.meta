@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 048ca30729449644680ee5e6bef8b1ed
+guid: 0954d316d3839ca43aa7274e98d05812
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -154,10 +154,3 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 285953
-  packageName: Game Input Controller Icons Free
-  packageVersion: 
-  assetPath: Assets/Art/Images/GameInputControllerIconsFree/keyboard/keyboard-solid/g.png
-  uploadId: 0

@@ -6011,30 +6011,38 @@ PrefabInstance:
       objectReference: {fileID: 665242793}
     - target: {fileID: 9081242206680119104, guid: b0d6a9cfcfb2b354cb5dcef893e699bb, type: 3}
       propertyPath: videos.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9081242206680119104, guid: b0d6a9cfcfb2b354cb5dcef893e699bb, type: 3}
       propertyPath: mensajes.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9081242206680119104, guid: b0d6a9cfcfb2b354cb5dcef893e699bb, type: 3}
       propertyPath: 'videos.Array.data[0]'
       value: 
-      objectReference: {fileID: 32900000, guid: f1c28e339525de84a92b407366e28416, type: 3}
+      objectReference: {fileID: 32900000, guid: 23bb8a36c30feef4293ceb264e54f93d, type: 3}
     - target: {fileID: 9081242206680119104, guid: b0d6a9cfcfb2b354cb5dcef893e699bb, type: 3}
       propertyPath: 'videos.Array.data[1]'
       value: 
       objectReference: {fileID: 32900000, guid: 7687f661286b4cd40b8354f257f8d312, type: 3}
     - target: {fileID: 9081242206680119104, guid: b0d6a9cfcfb2b354cb5dcef893e699bb, type: 3}
+      propertyPath: 'videos.Array.data[2]'
+      value: 
+      objectReference: {fileID: 32900000, guid: bbce411c005da8f4393fed497902621a, type: 3}
+    - target: {fileID: 9081242206680119104, guid: b0d6a9cfcfb2b354cb5dcef893e699bb, type: 3}
       propertyPath: 'mensajes.Array.data[0]'
-      value: "Acertijo: Es un lugar muy especial, donde el aroma es genial. Vas por
-        charla o compa\xF1\xEDa, y siempre encuentras energ\xEDa. \xBFQu\xE9 es?"
+      value: "Tras muros severos y puertas de juicio, Donde las decisiones pesan
+        m\xE1s que el silencio, All\xED donde empieza y termina el control, Busca
+        el lugar con m\xE1s poder... y m\xE1s soledad."
       objectReference: {fileID: 0}
     - target: {fileID: 9081242206680119104, guid: b0d6a9cfcfb2b354cb5dcef893e699bb, type: 3}
       propertyPath: 'mensajes.Array.data[1]'
-      value: "Acertijo: No es sala de espera ni sala de estar, pero all\xED vas cuando
-        algo quieres sanar. Con palabras y calma se empieza el d\xEDa, \xBFd\xF3nde
-        est\xE1s?"
+      value: "No es sala de espera ni sala de estar, pero all\xED vas cuando algo
+        quieres sanar. Con palabras y calma se empieza el d\xEDa, \xBFd\xF3nde est\xE1s?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9081242206680119104, guid: b0d6a9cfcfb2b354cb5dcef893e699bb, type: 3}
+      propertyPath: 'mensajes.Array.data[2]'
+      value: La claqueta 3 es la llave para salir
       objectReference: {fileID: 0}
     - target: {fileID: 9115287943067042683, guid: b0d6a9cfcfb2b354cb5dcef893e699bb, type: 3}
       propertyPath: m_Material
@@ -45763,13 +45771,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1225935190}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 1.51, y: 2.19, z: 2.12}
+  m_LocalRotation: {x: 0.7068527, y: -0.018956479, z: 0.018956443, w: 0.7068527}
+  m_LocalPosition: {x: -5.37, y: 2.19, z: -14.97}
   m_LocalScale: {x: 0.9, y: 1, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 131082034}
-  m_LocalEulerAnglesHint: {x: 90, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 180, z: 183.072}
 --- !u!64 &1225935192
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -79523,7 +79531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &7607487260691410945
 MeshRenderer:
   m_ObjectHideFlags: 0

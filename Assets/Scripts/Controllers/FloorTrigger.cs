@@ -9,7 +9,7 @@ public class FloorTrigger : MonoBehaviour
     {
         Debug.Log(" Algo entró en el trigger: " + other.name);
 
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Terapia") || other.CompareTag("Exit"))
         {
             // Verifica si mapManager es null antes de usarlo
             if (mapManager != null)

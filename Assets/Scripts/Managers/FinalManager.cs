@@ -12,12 +12,7 @@ public class FinalManager : MonoBehaviour
     public Image targetImage;
     public GameObject interactionCanvas;
 
-    [Header("Botones")]
-    public GameObject endButtons;
-    public Button restartButton;
-    public Button quitButton;
-    private FirstPersonLook lookScript;
-
+    public GameObject inventoryPanel;
 
     [Header("Arrays de Imágenes")]
     public Sprite[] imageFinalOne;
@@ -31,6 +26,7 @@ public class FinalManager : MonoBehaviour
     private bool _playerInRange = false;
     private bool _isPlayingSequence = false;
     private Counter _timer;
+    private FirstPersonLook lookScript;
 
     private void Start()
     {
@@ -40,25 +36,13 @@ public class FinalManager : MonoBehaviour
         {
             imagePanel.SetActive(false);
         }
-        if (endButtons != null)
-        {
-            endButtons.SetActive(false);
-        }
-        if (restartButton != null)
-        {
-            restartButton.onClick.AddListener(OnRestartGame);
-        }
-
-        if (quitButton != null)
-        {
-            quitButton.onClick.AddListener(OnQuitGame);
-        }
     }
 
     private void Update()
     {
         if (_playerInRange && Input.GetKeyDown(KeyCode.E) && !_isPlayingSequence)
         {
+            inventoryPanel.SetActive(false);
             StartCoroutine(PlayImageSequence());
         }
     }
@@ -88,16 +72,24 @@ public class FinalManager : MonoBehaviour
         {
             if (targetImage != null && image != null)
             {
-                targetImage.sprite = image; // Usamos sprite en lugar de texture
+                targetImage.sprite = image;
             }
             yield return new WaitForSecondsRealtime(timePerImage);
         }
 
-        if (endButtons != null)
-        {
-            endButtons.SetActive(true);
-        }
+        // Esperar 15 segundos adicionales antes de reiniciar
+        yield return new WaitForSecondsRealtime(15f);
 
+        // Reiniciar el nivel
+        if (GameManager.Instance.IsPaused)
+        {
+            GameManager.Instance.TogglePause();
+        }
+        if (lookScript != null)
+        {
+            lookScript.UpdateCursorState();
+        }
+        GameManager.Instance.RestartGame();
     }
 
     private Sprite[] GetImageArrayBasedOnTime()
@@ -118,24 +110,6 @@ public class FinalManager : MonoBehaviour
         {
             return imageFinalThree;
         }
-    }
-
-    private void OnRestartGame()
-    {
-        if (GameManager.Instance.IsPaused)
-        {
-            GameManager.Instance.TogglePause();
-        }
-        if (lookScript != null)
-        {
-            lookScript.UpdateCursorState();
-        }
-        GameManager.Instance.RestartGame();
-    }
-
-    private void OnQuitGame()
-    {
-        GameManager.Instance.ReturnToMainMenu();
     }
 
     private void OnTriggerEnter(Collider other)
